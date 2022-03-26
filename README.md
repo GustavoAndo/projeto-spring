@@ -1,4 +1,4 @@
-# Projeto Spring: CRUD + Segurança
+# Projeto Spring: Java Web - CRUD + Segurança
 
 Projeto feito enquanto aprendo Spring Boot.
 
