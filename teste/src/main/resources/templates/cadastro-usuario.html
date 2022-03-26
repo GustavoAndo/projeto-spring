@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Usuário</title>
+</head>
+<body>
+    <h1>Cadastro de Usuário</h1>
+    <form th:action="@{salvarUsuarios}" th:object="${usuario}" method="POST">
+        Nome: <input type="text" th:field="*{nome}"><br><br>
+        Login: <input type="text" th:field="*{login}"><br><br>
+        Senha: <input type="password" th:field="*{senha}"><br><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    <hr>
+    <a th:href="@{/}">Voltar para a página inicial</a>
+</body>
+</html>

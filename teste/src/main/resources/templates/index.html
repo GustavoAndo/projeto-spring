@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Usuarios</title>
+</head>
+<body>
+    <h1>Controle de Usuarios</h1>
+    <a action="#" th:href="@{/cadastrarUsuarios}">Adicionar Usuário</a><br>
+    <table border="1px">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Login</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${listaUsuarios}">
+                <td th:text="${usuario.nome}"></td>
+                <td th:text="${usuario.login}"></td>
+                <td><a th:href="@{/editarUsuarios/{id}(id=${usuario.id})}">Editar</a>
+                <a th:href="@{/excluirUsuarios/{id}(id=${usuario.id})}">Excluir</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
