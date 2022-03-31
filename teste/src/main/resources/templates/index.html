@@ -13,6 +13,7 @@
             <tr>
                 <td>Nome</td>
                 <td>Login</td>
+                <td>Nível de Acesso</td>
                 <td>Ações</td>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
             <tr th:each="usuario : ${listaUsuarios}">
                 <td th:text="${usuario.nome}"></td>
                 <td th:text="${usuario.login}"></td>
+                <td th:text="${usuario.nivel_acesso}"></td>
                 <td><a th:href="@{/editarUsuarios/{id}(id=${usuario.id})}">Editar</a>
                 <a th:href="@{/excluirUsuarios/{id}(id=${usuario.id})}">Excluir</a></td>
             </tr>

@@ -1,28 +1,31 @@
 package com.projeto.teste.entidade;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="usuarios")
 public class Usuario {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "nome")
+	@NotBlank(message="O nome deve obrigatoriamente ser preenchido")
 	private String nome;
 	
-	@Column(name = "login")
+	@NotBlank(message="O e-mail deve obrigatoriamente ser preenchido")
+	@Email(message="Endereço de e-mail inválido")
 	private String login;
 	
-	@Column(name = "senha")
+	@Size(min=8, max=16, message="A senha deve estar entre 8 a 16 digitos")
 	private String senha;
+
+	private String nivel_acesso;
 
 	public long getId() {
 		return id;
@@ -54,5 +57,13 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getNivel_acesso() {
+		return nivel_acesso;
+	}
+
+	public void setNivel_acesso(String nivel_acesso) {
+		this.nivel_acesso = nivel_acesso;
 	}
 }

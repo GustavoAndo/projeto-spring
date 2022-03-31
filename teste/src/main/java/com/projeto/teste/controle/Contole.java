@@ -1,8 +1,11 @@
 package com.projeto.teste.controle;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +33,10 @@ public class Contole {
 	}
 	
 	@PostMapping("/salvarUsuarios")
-	public String salvarUsuarios(@ModelAttribute("usuario") Usuario usuario) {
+	public String salvarUsuarios(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result) {
+		if(result.hasErrors()) {
+			return "cadastro-usuario";
+		}
 		usuarioServico.salvarUsuario(usuario);
 		return "redirect:/";
 	}
