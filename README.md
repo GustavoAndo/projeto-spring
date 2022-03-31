@@ -7,6 +7,7 @@ Nele pretendo fazer com Spring:
 - [x] Cadastro de dados no banco
 - [x] Edição de dados no banco
 - [x] Exclusão de dados no banco
+- [x] Validação de formulário
 - [ ] Sistema de segurança com Login
 - [ ] Sistema de login com conexão ao banco MySQL com spring
 - [ ] Sistema de funções diferentes de conta (Administrador, usuário etc.)
