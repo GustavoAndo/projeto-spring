@@ -20,10 +20,10 @@ public class Usuario {
 	
 	@NotBlank(message="O e-mail deve obrigatoriamente ser preenchido")
 	@Email(message="Endereço de e-mail inválido")
-	private String login;
+	private String username;
 	
-	@Size(min=8, max=16, message="A senha deve estar entre 8 a 16 digitos")
-	private String senha;
+	@Size(min=8, message="A senha deve possuir mais de 8 digitos")
+	private String password;
 
 	private String nivel_acesso;
 
@@ -43,20 +43,20 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getNivel_acesso() {

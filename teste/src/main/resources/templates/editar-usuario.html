@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +10,14 @@
     <form th:action="@{/salvarUsuarios}" th:object="${usuario}" method="POST">
         <input type="hidden" th:field="*{id}">
         Nome: <input type="text" th:field="*{nome}"><br><br>
-        Login: <input type="text" th:field="*{login}"><br><br>
-        <input type="hidden" th:field="*{senha}">
+        Login: <input type="text" th:field="*{username}"><br><br>
+        <input type="hidden" th:field="*{password}">
+      	<input type="radio" checked name="nivel_acesso" value="Aluno" th:checked="${usuario.nivel_acesso == 'Aluno'}"> Aluno
+       	<input type="radio" name="nivel_acesso" value="Professor" th:checked="${usuario.nivel_acesso == 'Professor'}"> Professor
+       	<input type="radio" name="nivel_acesso" value="Administrador" th:checked="${usuario.nivel_acesso == 'Administrador'}"> Administrador <br><br>
         <input type="submit" value="Editar">
     </form>
     <hr>
-    <a th:href="@{/}">Voltar para a página inicial</a>
+    <a th:href="@{/usuarios}">Voltar para a lista de usuários</a>
 </body>
 </html>

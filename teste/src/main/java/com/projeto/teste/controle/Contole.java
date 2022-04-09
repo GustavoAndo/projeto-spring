@@ -3,6 +3,7 @@ package com.projeto.teste.controle;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,15 +21,26 @@ public class Contole {
 	private UsuarioServico usuarioServico;
 	
 	@GetMapping("/")
+	public String verHome() {
+		return "index";
+	}
+	
+	@GetMapping("/login")
+	public String verLogin() {
+		return "login";
+	}
+	
+	@GetMapping("/usuarios")
 	public String verUsuarios(Model modelo) {
 		modelo.addAttribute("listaUsuarios", usuarioServico.pegarTodosUsuarios());
-		return "index";
+		return "usuario";
 	}
 	
 	@GetMapping("/cadastrarUsuarios")
 	public String cadatrarUsuarios(Model modelo) {
 		Usuario usuario = new Usuario();
 		modelo.addAttribute("usuario", usuario);
+		usuario.setNivel_acesso("Aluno");
 		return "cadastro-usuario";
 	}
 	
@@ -37,8 +49,11 @@ public class Contole {
 		if(result.hasErrors()) {
 			return "cadastro-usuario";
 		}
+		BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder(12);
+		String senhaCriptografada = criptografar.encode(usuario.getPassword());
+		usuario.setPassword(senhaCriptografada);
 		usuarioServico.salvarUsuario(usuario);
-		return "redirect:/";
+		return "redirect:/usuarios";
 	}
 	
 	@GetMapping("/editarUsuarios/{id}")
@@ -51,6 +66,6 @@ public class Contole {
 	@GetMapping("/excluirUsuarios/{id}")
 	public String excluirUsuarios(@PathVariable(value = "id") long id) {
 		usuarioServico.excluirUsuarioPorId(id);
-		return "redirect:/";
+		return "redirect:/usuarios";
 	}
 }
