@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Home</h1>
+    <h2>Bem-vindo, <span sec:authentication="name">Username</span></h2>
     <ul>
     	<li><a href="#">Perfil</a></li>
     	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Lista de Usuários</a></li>

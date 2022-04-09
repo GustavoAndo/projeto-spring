@@ -1,24 +1,35 @@
 package com.projeto.teste.seguranca;
 
-import org.springframework.context.annotation.Bean;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
 public class SegurancaConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private DataSource dataSource;
+	
+	@Autowired
+	public void configAutenticacao(AuthenticationManagerBuilder authBuilder) throws Exception {
+		authBuilder.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+			.dataSource(dataSource)
+			.usersByUsernameQuery("select username, password, ativo from usuario where username=?")
+			.authoritiesByUsernameQuery("select username, nivel_acesso from usuario where username=?");
+	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	http.
 		authorizeRequests()
-			.antMatchers("/cadastrarUsuarios").hasRole("ADMINISTRADOR")
-			.antMatchers("/editarUsuarios/{id}").hasRole("ADMINISTRADOR")
-			.antMatchers("/excluirUsuarios/{id}").hasRole("ADMINISTRADOR")
+			.antMatchers("/usuarios", "/cadastrarUsuarios", "/editarUsuarios/{id}","/excluirUsuarios/{id}").hasRole("ADMINISTRADOR")
 			.anyRequest()
 			.authenticated()
 		.and()
@@ -28,17 +39,8 @@ public class SegurancaConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.logout()
 			.logoutSuccessUrl("/login?logout")
-			.permitAll();
-	}
-	
-	@Bean
-	@Override
-	protected UserDetailsService userDetailsService() {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username("gustavo")
-				.password("123")
-				.roles("ADMINISTRADOR")
-				.build();
-		return new InMemoryUserDetailsManager(user);
+			.permitAll()
+		.and()
+		.exceptionHandling().accessDeniedPage("/403");
 	}
 }

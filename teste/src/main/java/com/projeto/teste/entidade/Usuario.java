@@ -1,5 +1,6 @@
 package com.projeto.teste.entidade;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +25,11 @@ public class Usuario {
 	
 	@Size(min=8, message="A senha deve possuir mais de 8 digitos")
 	private String password;
-
+	
 	private String nivel_acesso;
+	
+	@Column(columnDefinition = "TINYINT", length = 1)
+	private int ativo;
 
 	public long getId() {
 		return id;
@@ -65,5 +69,13 @@ public class Usuario {
 
 	public void setNivel_acesso(String nivel_acesso) {
 		this.nivel_acesso = nivel_acesso;
+	}
+
+	public int getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
 	}
 }

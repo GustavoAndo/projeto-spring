@@ -40,7 +40,7 @@ public class Contole {
 	public String cadatrarUsuarios(Model modelo) {
 		Usuario usuario = new Usuario();
 		modelo.addAttribute("usuario", usuario);
-		usuario.setNivel_acesso("Aluno");
+		usuario.setNivel_acesso("ROLE_ALUNO");
 		return "cadastro-usuario";
 	}
 	
@@ -49,9 +49,9 @@ public class Contole {
 		if(result.hasErrors()) {
 			return "cadastro-usuario";
 		}
-		BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder(12);
-		String senhaCriptografada = criptografar.encode(usuario.getPassword());
-		usuario.setPassword(senhaCriptografada);
+	    String encodedPassword = new BCryptPasswordEncoder().encode(usuario.getPassword());
+	    usuario.setPassword(encodedPassword);
+	    usuario.setAtivo(1);
 		usuarioServico.salvarUsuario(usuario);
 		return "redirect:/usuarios";
 	}
