@@ -7,6 +7,7 @@ Nele pretendo fazer com Spring:
 - [x] Cadastro de dados no banco
 - [x] Edição de dados no banco
 - [x] Exclusão de dados no banco
+- [x] Validação de formulário
 - [ ] Sistema de segurança com Login
 - [ ] Sistema de login com conexão ao banco MySQL com spring
 - [ ] Sistema de funções diferentes de conta (Administrador, usuário etc.)
@@ -26,3 +27,5 @@ Java, SpringBoot (Spring Web, Hibernate, Thymeleaf, JPA), MySQL e HTML.
 [Java Guides - Spring Boot CRUD Web Application with Thymeleaf, Spring MVC, Spring Data JPA, Hibernate, MySQL](https://www.javaguides.net/2020/05/spring-boot-crud-web-application-with-thymeleaf.html)
 
 [Exemplo de CRUD - Spring Boot + Thymeleaf (Youtube)](https://youtu.be/Mbjkccg6J1Q)
+
+[Validação de Campos com Spring Validation (Youtube)](https://youtu.be/Cgcif9YeEhw)
