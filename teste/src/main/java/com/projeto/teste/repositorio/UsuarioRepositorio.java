@@ -9,4 +9,6 @@ import com.projeto.teste.entidade.Usuario;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 
+	Usuario getUserByUsername(String username);
+
 }

@@ -28,9 +28,9 @@ public class Usuario {
 	
 	private String nivel_acesso;
 	
-	@Column(columnDefinition = "TINYINT", length = 1)
-	private int ativo;
-
+	@Column(columnDefinition = "tinyint", length = 1)
+	private int ativo = 1;
+	
 	public long getId() {
 		return id;
 	}
@@ -77,5 +77,9 @@ public class Usuario {
 
 	public void setAtivo(int ativo) {
 		this.ativo = ativo;
+	}
+
+	public boolean isEnabled() {
+		return true;
 	}
 }

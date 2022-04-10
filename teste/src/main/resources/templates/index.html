@@ -7,16 +7,37 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Home</h1>
-    <h2>Bem-vindo, <span sec:authentication="name">Username</span></h2>
+    <p>Cabeçalho:</p>
     <ul>
-    	<li><a href="#">Perfil</a></li>
+    	<li><a href="/perfil">Meu Perfil</a></li>
+    	<li sec:authorize="hasRole('ALUNO')"><a href="/presencaNota">Minhas Presencas e Notas</a></li>
+    	<li sec:authorize="hasAnyRole('ADMINISTRADOR','ALUNO')"><a href="/contato">Contato com Professores</a></li>
+    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Lista de Alunos</a></li>
+    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Notas dos Alunos</a></li>
+    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/presencas">Lista de Presença</a></li>
     	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Lista de Usuários</a></li>
+    	<li>
+    	<form action="/logout" method="post">
+			<input type="submit" value="Sair">      		
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		</form>
+		</li>
     </ul>
+    <h1>Escola Fictícia</h1>
+    <h2>Bem-vindo, <span sec:authentication="principal.username">Nome</span></h2>
+    <p>Esse site foi criado para a Escola Fictícia, para auxiliar alunos e professores a terem acesso às informações que desejarem</p>
     <hr>
-     <form action="/logout" method="post" class="navbar-form navbar-right">
-		<input type="submit" value="Sair">      		
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	</form>
+    <p>Nele, você pode:</p>
+    <ul>
+    	<li>Visualizar <a href="#avisos">avisos</a>.</li>
+		<li sec:authorize="hasRole('ALUNO')">Ver as <a href="/presencaNota">minhas presencas e notas</a>.</li>
+	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'ALUNO')">Entrar em <a href="/contato">contato</a> com os professores.</li>
+	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Ter acesso à <a href="/alunos">lista de alunos</a> para cadastrar, editar e excluir usuários.</li>
+	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Ter acesso às<a href="/notas"> notas dos alunos</a>.</li>
+    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Marcar na <a href="/presencas">lista de presença</a> dos alunos presentes em determinado dia<span sec:authorize="hasRole('ADMINISTRADOR')"> e atualizá-la</span>.</li>
+    	<li sec:authorize="hasRole('ADMINISTRADOR')">Ver a <a href="/usuarios">lista de usuários</a> e cadastrar, editar e excluir usuários</li>
+	</ul>
+	<hr>
+	<h2 id="avisos">Avisos</h2>
 </body>
 </html>
