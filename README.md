@@ -9,8 +9,9 @@ Nele pretendo fazer com Spring:
 - [x] Exclusão de dados no banco
 - [x] Validação de formulário
 - [x] Sistema de segurança com Login
-- [ ] Sistema de login com conexão ao banco MySQL com spring
-- [ ] Sistema de funções diferentes de conta (Administrador, usuário etc.)
+- [x] Sistema de login com conexão ao banco MySQL com spring
+- [x] Sistema de funções diferentes de conta (Administrador, usuário etc.)
+- [ ] Upload, download e visualização de imagens e arquivos
 - [ ] Adicionar alguns detalhes ao projeto (visual e funcional)
 
 Observação: podem ocorrer algumas falhas, já que é um projeto de aprendizagem.
@@ -34,3 +35,5 @@ Java, SpringBoot (Spring Web, Hibernate, Thymeleaf, JPA), MySQL e HTML.
 [Protegendo sua aplicação Java com Spring Security - Congresso de TI (Youtube)](https://youtu.be/FOX0r52_hwE)
 
 [Introdução ao Spring Security(Youtube)](https://youtu.be/CYpJuqV-CRs)
+
+[Java Guides - Spring Boot Security Form Authentication with JDBC and MySQL](https://www.codejava.net/frameworks/spring-boot/form-authentication-with-jdbc-and-mysql)
