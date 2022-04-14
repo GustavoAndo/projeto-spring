@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -30,6 +31,10 @@ public class Usuario {
 	
 	@Column(columnDefinition = "tinyint", length = 1)
 	private int ativo = 1;
+	
+	@Lob
+	@Column(name = "imagem_perfil")
+	private byte[] imagemPerfil;
 	
 	public long getId() {
 		return id;
