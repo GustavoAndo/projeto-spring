@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Aluno</title>
+</head>
+<body>
+    <h1>Cadastro de Aluno</h1>
+    <form th:action="@{salvarAluno}" th:object="${aluno}" method="POST">
+       	<div th:if="${#fields.hasErrors('RA')}" th:errors="*{RA}" style="color: red"></div>
+        RA: <input type="text" th:field="*{RA}"><br><br>
+    	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></div>
+        Nome: <input type="text" th:field="*{nome}"><br><br>
+        <div th:if="${#fields.hasErrors('serie')}" th:errors="*{serie}"  style="color: red"></div>
+        Login: <input type="text" th:field="*{serie}"><br><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    <hr>
+    <a th:href="@{/usuarios}">Voltar para a página inicial</a>
+</body>
+</html>
