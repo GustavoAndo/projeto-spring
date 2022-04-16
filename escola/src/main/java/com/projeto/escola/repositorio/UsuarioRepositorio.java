@@ -16,5 +16,5 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
             + " OR u.nivel_acesso LIKE %?1%"
             + " OR u.username LIKE %?1%")
     public List<Usuario> pesquisa(String palavraChave);
-
+    
 }
