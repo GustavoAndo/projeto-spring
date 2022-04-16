@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +44,13 @@ public class Contole {
 	}
 	
 	@GetMapping("/usuarios")
-	public String verUsuarios(Model modelo) {
-		modelo.addAttribute("listaUsuarios", usuarioRepo.findAll());
+	public String verUsuarios(Model modelo, @Param("palavraChave") String palavraChave) {
+		if (palavraChave != null) {
+			modelo.addAttribute("listaUsuarios", usuarioRepo.pesquisa(palavraChave));
+        } else {
+        	modelo.addAttribute("listaUsuarios", usuarioRepo.findAll());
+        }
+		modelo.addAttribute("palavraChave", palavraChave);
 		return "html/read/usuario";
 	}
 	

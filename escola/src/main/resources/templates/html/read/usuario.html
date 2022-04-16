@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,15 @@
 </head>
 <body>
     <h1>Controle de Usuarios</h1>
-    <a action="#" th:href="@{/cadastrarUsuarios}">Adicionar Usuário</a><br>
+    <a th:href="@{/cadastrarUsuarios}">Adicionar Usuário</a><br>
+    <form th:action="@{/usuarios}">
+    	Pesquisar: <input type="search" name="palavraChave" id="palavraChave" th:value="${palavraChave}">
+    	<input type="submit" value="Pesquisar">
+	</form>
     <table border="1px">
         <thead>
             <tr>
+           		<td>ID</td>
                 <td>Nome</td>
                 <td>Login</td>
                 <td>Nível de Acesso</td>
@@ -19,11 +25,12 @@
         </thead>
         <tbody>
             <tr th:each="usuario : ${listaUsuarios}">
+            	<td th:text="${usuario.id}"></td>
                 <td th:text="${usuario.nome}"></td>
                 <td th:text="${usuario.username}"></td>
                 <td th:text="${usuario.nivel_acesso}"></td>
                 <td sec:authorize="hasRole('ADMINISTRADOR')"><a th:href="@{/editarUsuarios/{id}(id=${usuario.id})}">Editar</a>
-                <a th:href="@{/excluirUsuarios/{id}(id=${usuario.id})}">Excluir</a></td>
+                <a id="excluir" th:href="@{/excluirUsuarios/{id}(id=${usuario.id})}">Excluir</a></td>
             </tr>
         </tbody>
     </table>
