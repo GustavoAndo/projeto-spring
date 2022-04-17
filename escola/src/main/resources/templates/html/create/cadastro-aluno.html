@@ -10,7 +10,7 @@
     <h1>Cadastro de Aluno</h1>
     <form th:action="@{salvarAlunos}" th:object="${aluno}" method="POST">
        	<div th:if="${#fields.hasErrors('ra')}" th:errors="*{ra}" style="color: red"></div>
-        RA: <input type="text" th:field="*{ra}"><br><br>
+        RA: <input type="number" th:field="*{ra}"><br><br>
        	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></div>
         Nome: <input type="text" th:field="*{nome}"><br><br>
         <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" style="color: red"></div>
