@@ -8,16 +8,31 @@
 </head>
 <body>
     <h1>Cadastro de Aluno</h1>
-    <form th:action="@{salvarAluno}" th:object="${aluno}" method="POST">
-       	<div th:if="${#fields.hasErrors('RA')}" th:errors="*{RA}" style="color: red"></div>
-        RA: <input type="text" th:field="*{RA}"><br><br>
-    	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></div>
+    <form th:action="@{salvarAlunos}" th:object="${aluno}" method="POST">
+       	<div th:if="${#fields.hasErrors('ra')}" th:errors="*{ra}" style="color: red"></div>
+        RA: <input type="text" th:field="*{ra}"><br><br>
+       	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></div>
         Nome: <input type="text" th:field="*{nome}"><br><br>
-        <div th:if="${#fields.hasErrors('serie')}" th:errors="*{serie}"  style="color: red"></div>
-        Login: <input type="text" th:field="*{serie}"><br><br>
+        <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" style="color: red"></div>
+        CPF: <input type="text" th:field="*{cpf}"><br><br>
+		Série:
+		<select  th:field="*{serie}">
+		 	<option value="" hidden=hidden disabled selected >Selecione uma série...</option>
+			<option value="1º ano A">1º ano A</option>
+			<option value="1º ano B">1º ano B</option>
+			<option value="1º ano C">1º ano C</option>
+			<option value="2º ano A">2º ano A</option>
+			<option value="2º ano B">2º ano B</option>
+			<option value="2º ano C">2º ano C</option>
+			<option value="3º ano A">3º ano A</option>
+			<option value="3º ano B">3º ano B</option>
+			<option value="3º ano C">3º ano C</option>
+		</select><br><br>
+       	<div th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}"  style="color: red"></div>
+        Data de Nascimento: <input type="date" th:field="*{dataNascimento}"><br><br>
         <input type="submit" value="Cadastrar">
     </form>
     <hr>
-    <a th:href="@{/usuarios}">Voltar para a página inicial</a>
+    <a th:href="@{/alunos}">Voltar para a lista de alunos</a>
 </body>
 </html>

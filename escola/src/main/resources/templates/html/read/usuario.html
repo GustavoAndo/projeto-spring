@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Usuarios</title>
+    <title>Usuários</title>
 </head>
 <body>
-    <h1>Controle de Usuarios</h1>
+    <h1>Usuários</h1>
     <a th:href="@{/cadastrarUsuarios}">Adicionar Usuário</a><br>
     <form th:action="@{/usuarios}">
     	Pesquisar: <input type="search" name="palavraChave" id="palavraChave" th:value="${palavraChave}">
@@ -19,9 +19,10 @@
            		<th>ID</th>
                 <th>Nome</th>
                 <th>Login</th>
+                <th>CPF</th>
                 <th>Nível de Acesso</th>
                 <th>Conta Ativada</th>
-                <th sec:authorize="hasRole('ADMINISTRADOR')">Ações</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -29,12 +30,13 @@
             	<td th:text="${usuario.id}"></td>
                 <td th:text="${usuario.nome}"></td>
                 <td th:text="${usuario.username}"></td>
-                <td th:if="${usuario.nivel_acesso == 'ROLE_ADMINISTRADOR'}">Administrador</td>
-                <td th:if="${usuario.nivel_acesso == 'ROLE_PROFESSOR'}">Professor</td>
-                <td th:if="${usuario.nivel_acesso == 'ROLE_ALUNO'}">Aluno</td>
+                <td th:text="${usuario.cpf}"></td>
+                <td th:if="${usuario.nivelAcesso == 'ROLE_ADMINISTRADOR'}">Administrador</td>
+                <td th:if="${usuario.nivelAcesso == 'ROLE_PROFESSOR'}">Professor</td>
+                <td th:if="${usuario.nivelAcesso == 'ROLE_ALUNO'}">Aluno</td>
                 <td th:if="${usuario.ativo == 0}"><img src="../img/inativo.png" alt="Conta Inativa" width="27px"></td>
                 <td th:if="${usuario.ativo == 1}"><img src="../img/ativo.png" alt="Conta ativa" width="27px"></td>
-                <td sec:authorize="hasRole('ADMINISTRADOR')">
+                <td>
                 	<a th:href="@{/editarUsuarios/{id}(id=${usuario.id})}">
                 		<img src="../img/editar.png" alt="Conta ativa" width="27px">
                 	</a>

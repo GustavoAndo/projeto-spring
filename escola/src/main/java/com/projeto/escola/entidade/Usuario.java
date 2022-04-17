@@ -10,6 +10,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 @Entity
 public class Usuario {
 	
@@ -27,7 +29,8 @@ public class Usuario {
 	@Size(min=8, message="A senha deve possuir mais de 8 digitos")
 	private String password;
 	
-	private String nivel_acesso;
+	@Column(name = "nivel_acesso")
+	private String nivelAcesso;
 	
 	@Column(columnDefinition = "tinyint", length = 1)
 	private int ativo = 1;
@@ -35,6 +38,10 @@ public class Usuario {
 	@Lob
 	@Column(name = "imagem_perfil")
 	private byte[] imagemPerfil;
+	
+	@NotBlank(message="O CPF deve obrigatoriamente ser preenchido")
+	@CPF
+	private String cpf;
 	
 	public long getId() {
 		return id;
@@ -68,12 +75,12 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public String getNivel_acesso() {
-		return nivel_acesso;
+	public String getNivelAcesso() {
+		return nivelAcesso;
 	}
 
-	public void setNivel_acesso(String nivel_acesso) {
-		this.nivel_acesso = nivel_acesso;
+	public void setNivel_acesso(String nivelAcesso) {
+		this.nivelAcesso = nivelAcesso;
 	}
 
 	public int getAtivo() {
@@ -84,7 +91,19 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 
-	public boolean isEnabled() {
-		return true;
+	public byte[] getImagemPerfil() {
+		return imagemPerfil;
+	}
+
+	public void setImagemPerfil(byte[] imagemPerfil) {
+		this.imagemPerfil = imagemPerfil;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }

@@ -13,7 +13,7 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 
     @Query("SELECT u FROM Usuario u WHERE u.nome LIKE %?1%"
             + " OR u.id LIKE %?1%"
-            + " OR u.nivel_acesso LIKE %?1%"
+            + " OR u.nivelAcesso LIKE %?1%"
             + " OR u.username LIKE %?1%")
     public List<Usuario> pesquisa(String palavraChave);
     

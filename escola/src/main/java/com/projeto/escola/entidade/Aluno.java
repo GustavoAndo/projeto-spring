@@ -6,35 +6,40 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Aluno {
 	@Id
-	long RA;
+	private Long ra;
 	
-	String nome;
+	private String cpf;
 	
+	private String nome;
+	
+	private String serie;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "data_nascimento")
-	Date dataNascimento;
+	private Date dataNascimento;
 	
-	String serie;
-	
-	@Column(name = "id_nota")
-	long idNota;
-	
-	@Column(name = "id_presenca")
-	long idPresenca;
-	
-	public long getRA() {
-		return RA;
+	public Long getRa() {
+		return ra;
 	}
-	public void setRA(long rA) {
-		RA = rA;
+	public void setRa(Long ra) {
+		this.ra = ra;
 	}
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -47,17 +52,5 @@ public class Aluno {
 	}
 	public void setSerie(String serie) {
 		this.serie = serie;
-	}
-	public long getIdNota() {
-		return idNota;
-	}
-	public void setIdNota(long idNota) {
-		this.idNota = idNota;
-	}
-	public long getIdPresenca() {
-		return idPresenca;
-	}
-	public void setIdPresenca(long idPresenca) {
-		this.idPresenca = idPresenca;
 	}
 }

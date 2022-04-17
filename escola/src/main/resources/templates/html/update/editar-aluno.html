@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Aluno</title>
+</head>
+<body>
+	<h1>Editar Aluno</h1>
+    <form th:action="@{/salvarAlunos}" th:object="${aluno}" method="POST">
+        RA: <input type="text" th:field="*{ra}"><br><br>
+        Nome: <input type="text" th:field="*{nome}"><br><br>
+        CPF: <input type="text" th:field="*{cpf}"><br><br>
+        <select  th:field="*{serie}">
+			<option value="1º ano A" th:selected="*{serie == '1º ano A'}">1º ano A</option>
+			<option value="1º ano B" th:selected="*{serie == '1º ano B'}">1º ano B</option>
+			<option value="1º ano C" th:selected="*{serie == '1º ano C'}">1º ano C</option>
+			<option value="2º ano A" th:selected="*{serie == '2º ano A'}">2º ano A</option>
+			<option value="2º ano B" th:selected="*{serie == '2º ano B'}">2º ano B</option>
+			<option value="2º ano C" th:selected="*{serie == '2º ano C'}">2º ano C</option>
+			<option value="3º ano A" th:selected="*{serie == '3º ano A'}">3º ano A</option>
+			<option value="3º ano B" th:selected="*{serie == '3º ano B'}">3º ano B</option>
+			<option value="3º ano C" th:selected="*{serie == '3º ano C'}">3º ano C</option>
+		</select><br><br>
+		Data de Nascimento <input type="date" th:field="*{dataNascimento}"><br><br>
+        <input type="submit" value="Editar">
+    </form>
+    <hr>
+    <a th:href="@{/alunos}">Voltar para a lista de alunos</a>
+</body>
+</html>
