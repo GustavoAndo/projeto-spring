@@ -9,19 +9,21 @@
 <body>
     <h1>Usuários</h1>
     <a th:href="@{/cadastrarUsuarios}">Adicionar Usuário</a><br>
-    <form th:action="@{/usuarios}">
+    <form th:action="@{/pagina/1}">
+    	<input type="hidden" name="sortField" id="sortField" th:value="${sortField}">
+    	<input type="hidden" name="sortDir" id="sortDir" th:value="${sortDir}">
     	Pesquisar: <input type="search" name="palavraChave" id="palavraChave" th:value="${palavraChave}">
     	<input type="submit" value="Pesquisar">
 	</form>
     <table border="1px">
         <thead>
             <tr>
-           		<th>ID</th>
-                <th>Nome</th>
-                <th>Login</th>
-                <th>CPF</th>
-                <th>Nível de Acesso</th>
-                <th>Conta Ativada</th>
+           		<th><a th:href="@{'/pagina/' + ${paginaAtual} + '?sortField=id&sortDir=' + ${reverseSortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">ID</a></th>
+                <th><a th:href="@{'/pagina/' + ${paginaAtual} + '?sortField=nome&sortDir=' + ${reverseSortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">Nome</a></th>
+                <th><a th:href="@{'/pagina/' + ${paginaAtual} + '?sortField=username&sortDir=' + ${reverseSortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">Login</a></th>
+                <th><a th:href="@{'/pagina/' + ${paginaAtual} + '?sortField=cpf&sortDir=' + ${reverseSortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">CPF</a></th>
+                <th><a th:href="@{'/pagina/' + ${paginaAtual} + '?sortField=nivelAcesso&sortDir=' + ${reverseSortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">Nível de Acesso</a></th>
+                <th><a th:href="@{'/pagina/' + ${paginaAtual} + '?sortField=ativo&sortDir=' + ${reverseSortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">Conta Ativada</a></th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -35,19 +37,30 @@
                 <td th:if="${usuario.nivelAcesso == 'ROLE_PROFESSOR'}">Professor</td>
                 <td th:if="${usuario.nivelAcesso == 'ROLE_ALUNO'}">Aluno</td>
                 <td th:if="${usuario.ativo == 0}"><img src="../img/inativo.png" alt="Conta Inativa" width="27px"></td>
-                <td th:if="${usuario.ativo == 1}"><img src="../img/ativo.png" alt="Conta ativa" width="27px"></td>
+                <td th:if="${usuario.ativo == 1}"><img src="../img/ativo.png" alt="Conta Ativa" width="27px"></td>
                 <td>
                 	<a th:href="@{/editarUsuarios/{id}(id=${usuario.id})}">
-                		<img src="../img/editar.png" alt="Conta ativa" width="27px">
+                		<img src="../img/editar.png" alt="Editar Usuário" width="27px">
                 	</a>
 	                <a onclick="javascript:return confirm('Você tem certeza que quer excluir este usuário?')" 
 	                th:href="@{/excluirUsuarios/{id}(id=${usuario.id})}">
-	                	<img src="../img/excluir.png" alt="Conta ativa" width="27px">
+	                	<img src="../img/excluir.png" alt="Excluir Usuário" width="27px">
 	                </a>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div>
+    	Total de Usuários: [[${totalItens}]] - Página [[${paginaAtual}]] de [[${totalPaginas}]] -
+    	<a th:if="${paginaAtual > 1}" th:href="@{'/pagina/' + ${paginaAtual - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}} ">Anterior</a>
+    	<span th:unless="${paginaAtual > 1}">Anterior</span>
+    	<span th:each = "i: ${#numbers.sequence(1, totalPaginas)}">
+    		<a th:if="${i != paginaAtual}" th:href="@{'/pagina/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">[[${i}]]</a>
+    		<span th:unless="${i != paginaAtual}">[[${i}]]</span>
+    	</span>
+    	<a th:if="${paginaAtual < totalPaginas}" th:href="@{'/pagina/' + ${paginaAtual + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${palavraChave != null ? '&palavraChave=' + palavraChave : ''}}">Próximo</a>
+    	<span th:unless="${paginaAtual < totalPaginas}">Próximo</span>
+    </div>
     <hr>
     <a href="/">Voltar para a Home</a>
 </body>

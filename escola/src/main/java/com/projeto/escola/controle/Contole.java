@@ -1,8 +1,13 @@
 package com.projeto.escola.controle;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -54,11 +59,39 @@ public class Contole {
 	
 	@GetMapping("/usuarios")
 	public String verUsuarios(Model modelo, @Param("palavraChave") String palavraChave) {
-		if (palavraChave != null) {
-			modelo.addAttribute("listaUsuarios", usuarioRepo.pesquisa(palavraChave));
-        } else {
-        	modelo.addAttribute("listaUsuarios", usuarioRepo.findAll());
-        }
+		return paginaUsuario(modelo, 1, "id", "asc", null);
+	}
+	
+	@GetMapping("/pagina/{numeroPagina}")
+	public String paginaUsuario(Model modelo, @PathVariable("numeroPagina") int paginaAtual,
+											@Param("sortField") String sortField,
+											@Param("sortDir") String sortDir,
+											@Param("palavraChave") String palavraChave) {
+		Sort ordenar = Sort.by(sortField);
+    	ordenar = sortDir.equals("asc") ? ordenar.ascending() : ordenar.descending();
+    	Pageable paginas = PageRequest.of(paginaAtual - 1, 7, ordenar);
+    	if (palavraChave != null) {
+			Page<Usuario> pagina = usuarioRepo.pesquisa(palavraChave, paginas);
+			long totalItens = pagina.getTotalElements();
+	    	int totalPaginas = pagina.getTotalPages();
+	    	List<Usuario> listaUsuarios = pagina.getContent();
+	    	modelo.addAttribute("totalItens", totalItens);
+	    	modelo.addAttribute("totalPaginas", totalPaginas);
+	    	modelo.addAttribute("listaUsuarios", listaUsuarios);
+		} else {
+			Page<Usuario> pagina = usuarioRepo.findAll(paginas);
+			long totalItens = pagina.getTotalElements();
+	    	int totalPaginas = pagina.getTotalPages();
+	    	List<Usuario> listaUsuarios = pagina.getContent();
+	    	modelo.addAttribute("totalItens", totalItens);
+	    	modelo.addAttribute("totalPaginas", totalPaginas);
+	    	modelo.addAttribute("listaUsuarios", listaUsuarios);
+		}
+    	modelo.addAttribute("paginaAtual", paginaAtual);
+    	modelo.addAttribute("sortField", sortField);
+    	modelo.addAttribute("sortDir", sortDir);
+    	String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+    	modelo.addAttribute("reverseSortDir", reverseSortDir);
 		modelo.addAttribute("palavraChave", palavraChave);
 		return "html/read/usuario";
 	}
