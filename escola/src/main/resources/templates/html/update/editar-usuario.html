@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
+    <script src="../js/script.js"></script>
 </head>
 <body>
 	<h1>Editar Usuario</h1>
     <form th:action="@{/salvarUsuarios}" th:object="${usuario}" method="POST">
         <input type="hidden" th:field="*{id}">
-        Nome: <input type="text" th:field="*{nome}"><br><br>
-        Login: <input type="text" th:field="*{username}"><br><br>
+        Nome: <input type="text" th:field="*{nome}" required><br><br>
+        CPF: <input type="text" th:field="*{cpf}" oninput="mascara(this)" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required><br><br>
+        Login: <input type="text" th:field="*{username}" required><br><br>
         <input type="hidden" th:field="*{password}">
         <span>Nível de Acesso:</span><br>
-      	<input type="radio" checked name="nivel_acesso" value="ROLE_ALUNO" th:checked="${usuario.nivel_acesso == 'ROLE_ALUNO'}"> Aluno
-       	<input type="radio" name="nivel_acesso" value="ROLE_PROFESSOR" th:checked="${usuario.nivel_acesso == 'ROLE_PROFESSOR'}"> Professor
-       	<input type="radio" name="nivel_acesso" value="ROLE_ADMINISTRADOR" th:checked="${usuario.nivel_acesso == 'ROLE_ADMINISTRADOR'}"> Administrador <br><br>
-        <span>Conta ativada:</span><br>
+      	<input type="radio" name="nivelAcesso" value="ROLE_ALUNO" th:checked="${usuario.nivelAcesso == 'ROLE_ALUNO'}"> Aluno
+       	<input type="radio" name="nivelAcesso" value="ROLE_PROFESSOR" th:checked="${usuario.nivelAcesso == 'ROLE_PROFESSOR'}"> Professor
+       	<input type="radio" name="nivelAcesso" value="ROLE_ADMINISTRADOR" th:checked="${usuario.nivelAcesso == 'ROLE_ADMINISTRADOR'}"> Administrador <br><br>
         <input type="radio" name="ativo" value="1" th:checked="${usuario.ativo == 1}"> Sim
         <input type="radio" name="ativo" value="0" th:checked="${usuario.ativo == 0}"> Não <br><br>
         <input type="submit" value="Editar">

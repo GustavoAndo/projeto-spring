@@ -2,22 +2,21 @@ package com.projeto.escola.controle;
 
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.projeto.escola.entidade.Aluno;
+import com.projeto.escola.entidade.Nota;
 import com.projeto.escola.entidade.Usuario;
 import com.projeto.escola.repositorio.AlunoRepositorio;
+import com.projeto.escola.repositorio.NotaRepositorio;
 import com.projeto.escola.repositorio.UsuarioRepositorio;
 
 @Controller
@@ -30,6 +29,9 @@ public class Contole {
 	
 	@Autowired 
 	private AlunoRepositorio alunoRepo;
+	
+	@Autowired
+	private NotaRepositorio notaRepo;
 	
 	// URL
 	
@@ -76,7 +78,7 @@ public class Contole {
 	
 	@GetMapping("/cadastrarUsuarios")
 	public String cadatrarUsuarios(@ModelAttribute("usuario") Usuario usuario) {
-		usuario.setNivel_acesso("ROLE_ALUNO");
+		usuario.setNivelAcesso("ROLE_ALUNO");
 		return "html/create/cadastro-usuario";
 	}
 	
@@ -89,21 +91,18 @@ public class Contole {
 	// CREATE (SAVE)
 	
 	@PostMapping("/salvarUsuarios")
-	public String salvarUsuarios(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result) {
+	public String salvarUsuarios(@ModelAttribute("usuario") Usuario usuario) {
 	    String encodedPassword = new BCryptPasswordEncoder().encode(usuario.getPassword());
 	    usuario.setPassword(encodedPassword);
-		if(result.hasErrors()) {
-			return "html/create/cadastro-usuario";
-		}
 	    usuarioRepo.save(usuario);	
 		return "redirect:/usuarios";
 	}
 	
 	@PostMapping("/salvarAlunos")
-	public String salvarAlunos(@Valid @ModelAttribute("aluno") Aluno aluno, BindingResult result) {
-		if(result.hasErrors()) {
-			return "html/create/cadastro-aluno";
-		}
+	public String salvarAlunos(@ModelAttribute("aluno") Aluno aluno, @ModelAttribute("nota") Nota nota) {
+		nota.setId(aluno.getRa());
+		nota.setNome(aluno.getNome());
+		notaRepo.save(nota);
 		alunoRepo.save(aluno);
 		return "redirect:/alunos";
 	}

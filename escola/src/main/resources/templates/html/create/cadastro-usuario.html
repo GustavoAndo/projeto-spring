@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
+    <script src="../js/script.js"></script>
 </head>
 <body>
     <h1>Cadastro de Usuário</h1>
     <form th:action="@{salvarUsuarios}" th:object="${usuario}" method="POST">
-    	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></div>
-        Nome: <input type="text" th:field="*{nome}"><br><br>
-        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"  style="color: red"></div>
-        Login: <input type="text" th:field="*{username}"><br><br>
-         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"  style="color: red"></div>
-        Senha: <input type="password" th:field="*{password}"><br><br>
+        Nome: <input type="text" th:field="*{nome}" required><br><br>
+        CPF: <input type="text" th:field="*{cpf}" oninput="mascara(this)" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required><br><br>
+        Login: <input type="email" th:field="*{username}" required><br><br>
+        Senha: <input type="password" th:field="*{password}" required><br><br>
         <input type="radio" name="nivel_acesso" value="ROLE_ALUNO" th:field="*{nivelAcesso}"> Aluno
        	<input type="radio" name="nivel_acesso" value="ROLE_PROFESSOR" th:field="*{nivelAcesso}"> Professor
        	<input type="radio" name="nivel_acesso" value="ROLE_ADMINISTRADOR" th:field="*{nivelAcesso}"> Administrador <br><br>

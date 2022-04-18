@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Aluno</title>
+    <script src="../js/script.js"></script>
 </head>
 <body>
 	<h1>Editar Aluno</h1>
     <form th:action="@{/salvarAlunos}" th:object="${aluno}" method="POST">
-        RA: <input type="text" th:field="*{ra}"><br><br>
-        Nome: <input type="text" th:field="*{nome}"><br><br>
-        CPF: <input type="text" th:field="*{cpf}"><br><br>
+        RA: <span th:text="*{ra}"></span><br><br>
+        <input type="hidden" th:field=*{ra}>
+        Nome: <input type="text" th:field="*{nome}" required><br><br>
+        CPF: <input oninput="mascara(this)" type="text" th:field="*{cpf}" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required><br><br>
+        Série:
         <select  th:field="*{serie}">
 			<option value="1º ano A" th:selected="*{serie == '1º ano A'}">1º ano A</option>
 			<option value="1º ano B" th:selected="*{serie == '1º ano B'}">1º ano B</option>

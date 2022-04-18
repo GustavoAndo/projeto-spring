@@ -14,7 +14,7 @@ public class Aluno {
 	private Long ra;
 	
 	private String cpf;
-	
+
 	private String nome;
 	
 	private String serie;

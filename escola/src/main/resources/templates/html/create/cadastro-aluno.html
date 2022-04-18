@@ -5,18 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Aluno</title>
+    <script src="../js/script.js"></script>
 </head>
 <body>
     <h1>Cadastro de Aluno</h1>
     <form th:action="@{salvarAlunos}" th:object="${aluno}" method="POST">
-       	<div th:if="${#fields.hasErrors('ra')}" th:errors="*{ra}" style="color: red"></div>
-        RA: <input type="number" th:field="*{ra}"><br><br>
-       	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></div>
-        Nome: <input type="text" th:field="*{nome}"><br><br>
-        <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" style="color: red"></div>
-        CPF: <input type="text" th:field="*{cpf}"><br><br>
+        RA: <input type="number" th:field="*{ra}" min="1000000000" max="9999999999" required><br><br>
+        Nome: <input type="text" th:field="*{nome}" required><br><br>
+        CPF: <input oninput="mascara(this)" type="text" th:field="*{cpf}" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required><br><br>
 		Série:
-		<select  th:field="*{serie}">
+		<select  th:field="*{serie}" required>
 		 	<option value="" hidden=hidden disabled selected >Selecione uma série...</option>
 			<option value="1º ano A">1º ano A</option>
 			<option value="1º ano B">1º ano B</option>
@@ -28,8 +26,7 @@
 			<option value="3º ano B">3º ano B</option>
 			<option value="3º ano C">3º ano C</option>
 		</select><br><br>
-       	<div th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}"  style="color: red"></div>
-        Data de Nascimento: <input type="date" th:field="*{dataNascimento}"><br><br>
+        Data de Nascimento: <input type="date" th:field="*{dataNascimento}" required><br><br>
         <input type="submit" value="Cadastrar">
     </form>
     <hr>

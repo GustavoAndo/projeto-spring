@@ -12,6 +12,8 @@ public class Nota {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	
+	String nome;
+	
 	float atividade1;
 	float atividade2;
 	float atividade3;
@@ -29,6 +31,18 @@ public class Nota {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public float getMediaAtividades() {
+		return mediaAtividades;
+	}
+	public void setMediaAtividades(float mediaAtividades) {
+		this.mediaAtividades = mediaAtividades;
 	}
 	public float getAtividade1() {
 		return atividade1;
@@ -53,12 +67,6 @@ public class Nota {
 	}
 	public void setAtividade4(float atividade4) {
 		this.atividade4 = atividade4;
-	}
-	public float getTotalAtividades() {
-		return mediaAtividades;
-	}
-	public void setTotalAtividades(float mediaAtividades) {
-		this.mediaAtividades = mediaAtividades;
 	}
 	public float getProva1() {
 		return prova1;

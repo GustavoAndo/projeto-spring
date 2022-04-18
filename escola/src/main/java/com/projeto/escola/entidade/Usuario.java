@@ -6,11 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Usuario {
@@ -19,14 +14,10 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank(message="O nome deve obrigatoriamente ser preenchido")
 	private String nome;
 	
-	@NotBlank(message="O e-mail deve obrigatoriamente ser preenchido")
-	@Email(message="Endereço de e-mail inválido")
 	private String username;
 	
-	@Size(min=8, message="A senha deve possuir mais de 8 digitos")
 	private String password;
 	
 	@Column(name = "nivel_acesso")
@@ -39,8 +30,6 @@ public class Usuario {
 	@Column(name = "imagem_perfil")
 	private byte[] imagemPerfil;
 	
-	@NotBlank(message="O CPF deve obrigatoriamente ser preenchido")
-	@CPF
 	private String cpf;
 	
 	public long getId() {
@@ -74,12 +63,12 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getNivelAcesso() {
 		return nivelAcesso;
 	}
 
-	public void setNivel_acesso(String nivelAcesso) {
+	public void setNivelAcesso(String nivelAcesso) {
 		this.nivelAcesso = nivelAcesso;
 	}
 
