@@ -11,7 +11,7 @@ Nele pretendo fazer com Spring:
 - [x] Sistema de login com conexão ao banco MySQL com spring
 - [x] Sistema de funções diferentes de conta (Administrador, usuário etc.)
 - [x] Páginas de erro personalizadas (403, 404, 500)
-- [ ] Filtros de busca, ordenação e paginação
+- [x] Filtros de busca, ordenação e paginação
 - [ ] Upload, download e visualização de imagens e arquivos
 
 E também algumas coisas fora do Spring:
@@ -45,3 +45,5 @@ Back: Java, SpringBoot (Spring Web, JPA, Hibernate, Thymeleaf, Spring Security) 
 [Code Java - Spring Boot Error Handling Guide](https://www.codejava.net/frameworks/spring-boot/spring-boot-error-handling-guide)
 
 [Code Java - Spring Data JPA Filter Search Examples](https://www.codejava.net/frameworks/spring-boot/spring-data-jpa-filter-search-examples)
+
+[Code Java - Spring Data JPA Paging and Sorting Examples](https://www.codejava.net/frameworks/spring-boot/spring-data-jpa-paging-and-sorting-examples)
