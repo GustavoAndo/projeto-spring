@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas dos Alunos</title>
+</head>
+<body>
+    <h1>Notas dos alunos</h1>
+    <form th:action="@{/notas}">
+    	Pesquisar: <input type="search" name="palavraChave" id="palavraChave" th:value="${palavraChave}">
+    	<input type="submit" value="Pesquisar">
+	</form>
+    <table border="1px">
+        <thead>
+            <tr>
+           		<th>RA</th>
+                <th>Nome</th>
+                <th>Atividade 1</th>
+                <th>Atividade 2</th>
+                <th>Atividade 3</th>
+                <th>Atividade 4</th>
+                <th>Média Atividades</th>
+                <th>Prova 1</th>
+                <th>Prova 2</th>
+                <th>Média Geral</th>
+              	<th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="nota : ${listaNotas}">
+            	<td th:text="${nota.id}"></td>
+                <td th:text="${nota.nome}"></td>
+                <td th:text="${nota.atividade1}"></td>
+				<td th:text="${nota.atividade2}"></td>
+				<td th:text="${nota.atividade3}"></td>
+				<td th:text="${nota.atividade4}"></td>
+				<td th:text="${nota.mediaAtividades}"></td>
+				<td th:text="${nota.atividade1}"></td>
+				<td th:text="${nota.atividade2}"></td>
+				<td th:text="${nota.media}"></td>
+                <td>
+                	<a th:href="@{/editarNotas/{id}(id=${nota.id})}">
+                		<img src="../img/editar.png" alt="Conta ativa" width="27px">
+                	</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <a href="/">Voltar para a Home</a>
+</body>
+</html>

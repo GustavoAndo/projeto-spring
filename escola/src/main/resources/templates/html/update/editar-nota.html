@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Notas</title>
+    <script src="../js/script.js"></script>
+</head>
+<body>
+	<h1>Editar Notas de <span th:text="${nota.nome}"></span></h1>
+    <form th:action="@{/salvarNotas}" th:object="${nota}" method="POST">
+        RA: <input type="text" th:field="*{id}" disabled><br><br>
+        <input type="hidden" th:field="*{id}">
+        Nome: <input type="text" th:field=*{nome} disabled><br><br>
+       	<input type="hidden" th:field="*{nome}">
+       	Atividade 1: <input type="number" step="0.01" th:field="*{atividade1}"><br><br>
+        Atividade 2: <input type="number" step="0.01" th:field="*{atividade2}"><br><br>
+        Atividade 3: <input type="number" step="0.01" th:field="*{atividade3}"><br><br>
+        Atividade 4: <input type="number" step="0.01" th:field="*{atividade4}"><br><br>
+        Média das Atividades: <input type="number" step="0.01" th:field="*{mediaAtividades}"><br><br>
+        Prova 1: <input type="number" step="0.01" th:field="*{prova1}"><br><br>
+        Prova 2: <input type="number" step="0.01" th:field="*{prova2}"><br><br>
+       	Média Geral: <input type="number" step="0.01" th:field="*{media}"><br><br>  
+        <input type="submit" value="Editar">
+    </form>
+    <hr>
+    <a th:href="@{/notas}">Voltar para a lista de alunos e notas</a>
+</body>
+</html>

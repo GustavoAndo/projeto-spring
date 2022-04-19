@@ -8,8 +8,6 @@
 </head>
 <body>
     <h1>Seu Perfil</h1>
-    <p>Nome:</p>
-    <p>Foto de perfil: </p>
     <p>Username: <span sec:authentication="principal.username"></span></p>
     <p>Nível de Acesso: <span sec:authentication="principal.authorities"></span></p>
     <a href="/editarPerfil">Editar Perfil</a>

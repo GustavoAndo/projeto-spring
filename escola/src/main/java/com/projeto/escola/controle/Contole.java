@@ -107,6 +107,17 @@ public class Contole {
 		return "html/read/alunos";
 	}
 	
+	@GetMapping("/notas")
+	public String verNotas(Model modelo, @Param("palavraChave") String palavraChave) {
+		if (palavraChave != null) {
+			modelo.addAttribute("listaNotas", notaRepo.pesquisa(palavraChave));
+        } else {
+        	modelo.addAttribute("listaNotas", notaRepo.findAll());
+        }
+		modelo.addAttribute("palavraChave", palavraChave);
+		return "html/read/notas";
+	}
+	
 	// CREATE (PAGES)
 	
 	@GetMapping("/cadastrarUsuarios")
@@ -140,6 +151,12 @@ public class Contole {
 		return "redirect:/alunos";
 	}
 	
+	@PostMapping("/salvarNotas")
+	public String salvarNotas(@ModelAttribute("nota") Nota nota) {
+		notaRepo.save(nota);
+		return "redirect:/notas";
+	}
+	
 	// UPDATE
 	
 	@GetMapping("/editarUsuarios/{id}")
@@ -150,7 +167,17 @@ public class Contole {
         }
         modelo.addAttribute("usuario", usuarioOpt.get());
         return "html/update/editar-usuario";
-	}
+	}	
+	
+	@GetMapping("/senhaUsuarios/{id}")
+	public String redfinirSenha(@PathVariable("id") long id, Model modelo) {
+		Optional<Usuario> usuarioOpt = usuarioRepo.findById(id);
+        if (usuarioOpt.isEmpty()) {
+        	 return "error/id-invalido";
+        }
+        modelo.addAttribute("usuario", usuarioOpt.get());
+        return "html/update/redefinir-senha";
+	}	
 	
 	@GetMapping("/editarAlunos/{ra}")
 	public String editarAlunos(@PathVariable("ra") Long ra, Model modelo) {
@@ -160,6 +187,16 @@ public class Contole {
         }
         modelo.addAttribute("aluno", alunoOpt.get());
         return "html/update/editar-aluno";
+	}
+	
+	@GetMapping("/editarNotas/{ra}")
+	public String editarNotas(@PathVariable("ra") Long ra, Model modelo) {
+		Optional<Nota> notaOpt = notaRepo.findById(ra);
+        if (notaOpt.isEmpty()) {
+        	 return "error/id-invalido";
+        }
+        modelo.addAttribute("nota", notaOpt.get());
+        return "html/update/editar-nota";
 	}
 	
 	// DELETE
@@ -177,10 +214,12 @@ public class Contole {
 	@GetMapping("/excluirAlunos/{ra}")
 	public String excluirAlunos(@PathVariable("ra") Long ra) {
 		Optional<Aluno> alunoOpt = alunoRepo.findById(ra);
-        if (alunoOpt.isEmpty()) {
+		Optional<Nota> notaOpt = notaRepo.findById(ra);
+        if (alunoOpt.isEmpty() || notaOpt.isEmpty()) {
             return "error/id-invalido";
         }
         alunoRepo.deleteById(ra);
+        notaRepo.deleteById(ra);
 		return "redirect:/alunos";
 	}
 }
