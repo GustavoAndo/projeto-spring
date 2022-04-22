@@ -8,23 +8,26 @@
     <script src="../js/script.js"></script>
 </head>
 <body>
-	<h1>Editar Notas de <span th:text="${nota.nome}"></span></h1>
+	<h1>Editar Notas</h1>
     <form th:action="@{/salvarNotas}" th:object="${nota}" method="POST">
-        RA: <input type="text" th:field="*{id}" disabled><br><br>
         <input type="hidden" th:field="*{id}">
-        Nome: <input type="text" th:field=*{nome} disabled><br><br>
-       	<input type="hidden" th:field="*{nome}">
-       	Atividade 1: <input type="number" step="0.01" th:field="*{atividade1}"><br><br>
-        Atividade 2: <input type="number" step="0.01" th:field="*{atividade2}"><br><br>
-        Atividade 3: <input type="number" step="0.01" th:field="*{atividade3}"><br><br>
-        Atividade 4: <input type="number" step="0.01" th:field="*{atividade4}"><br><br>
-        Média das Atividades: <input type="number" step="0.01" th:field="*{mediaAtividades}"><br><br>
-        Prova 1: <input type="number" step="0.01" th:field="*{prova1}"><br><br>
-        Prova 2: <input type="number" step="0.01" th:field="*{prova2}"><br><br>
-       	Média Geral: <input type="number" step="0.01" th:field="*{media}"><br><br>  
+        Nome: <input type="text" th:field=*{nomeAluno} disabled><br><br>
+       	<input type="hidden" th:field="*{nomeAluno}">
+       	Média de Biologia: <input type="number" step="0.1" th:field="*{mediaBio}"><br><br>
+       	Média de Matemática: <input type="number" step="0.1" th:field="*{mediaMat}"><br><br>
+        Média de Física: <input type="number" step="0.1" th:field="*{mediaFis}"><br><br>
+       	Média de Química: <input type="number" step="0.1" th:field="*{mediaQui}"><br><br>
+        Média de Geografia: <input type="number" step="0.1" th:field="*{mediaGeo}"><br><br>
+        Média de História: <input type="number" step="0.1" th:field="*{mediaHis}"><br><br>
+        Média de Filosofia: <input type="number" step="0.1" th:field="*{mediaFil}"><br><br>
+       	Média de Sociologia: <input type="number" step="0.1" th:field="*{mediaSoc}"><br><br> 
+       	Média de Português: <input type="number" step="0.1" th:field="*{mediaPor}"><br><br>  
+       	Média de Educação Física: <input type="number" step="0.1" th:field="*{mediaEdF}"><br><br>  
+       	Média de Artes: <input type="number" step="0.1" th:field="*{mediaArt}"><br><br>   
+       	Média de Inglês: <input type="number" step="0.1" th:field="*{mediaIng}"><br><br>   
         <input type="submit" value="Editar">
     </form>
     <hr>
-    <a th:href="@{/notas}">Voltar para a lista de alunos e notas</a>
+    <a th:href="@{/notas}">Voltar para a lista de notas</a>
 </body>
 </html>

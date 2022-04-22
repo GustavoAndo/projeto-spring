@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Cadastro de Usuário</h1>
+    <div style="color: green" th:if="${sucesso}">Usuário cadastrado com sucesso!</div>
     <form th:action="@{salvarUsuarios}" th:object="${usuario}" method="POST">
         Nome: <input type="text" th:field="*{nome}" required><br><br>
         CPF: <input type="text" th:field="*{cpf}" oninput="mascara(this)" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required><br><br>

@@ -15,10 +15,9 @@
     <table border="1px">
         <thead>
             <tr>
-           		<th rowspan="2">RA</th>
                 <th rowspan="2">Nome</th>
                 <th colspan="12">Média</th>
-                <th rowspan="2">Faltas</th>
+                <th rowspan="2">Editar</th>
             </tr>
             <tr>
             	<th>Bio</th>
@@ -37,20 +36,22 @@
         </thead>
         <tbody>
             <tr th:each="nota : ${listaNotas}">
-            	<td th:text="${nota.raAluno}"></td>
                 <td th:text="${nota.nomeAluno}"></td>
-                <td th:text="${nota.mediaBio}"></td>
-				<td th:text="${nota.mediaMat}"></td>
-				<td th:text="${nota.mediaFis}"></td>
-				<td th:text="${nota.mediaQui}"></td>
-				<td th:text="${nota.mediaHis}"></td>
-				<td th:text="${nota.mediaFilo}"></td>
-				<td th:text="${nota.mediaSoc}"></td>
-				<td th:text="${nota.mediaPor}"></td>
-				<td th:text="${nota.mediaEdF}"></td>
-				<td th:text="${nota.mediaArt}"></td>
-				<td th:text="${nota.mediaIng}"></td>
-				<td th:text="${nota.totalFaltas}"></td>
+                <td th:text="${#numbers.formatDecimal(nota.mediaBio,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaMat,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaFis,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaQui,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaGeo,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaHis,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaFil,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaSoc,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaPor,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaEdF,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaArt,1,1,'COMMA')}"></td>
+				<td th:text="${#numbers.formatDecimal(nota.mediaIng,1,1,'COMMA')}"></td>
+				<td><a th:href="@{/editarNotas/{id}(id=${nota.id})}">
+                	<img src="../img/editar.png" alt="Editar" width="27px">
+                </a></td>
             </tr>
         </tbody>
     </table>

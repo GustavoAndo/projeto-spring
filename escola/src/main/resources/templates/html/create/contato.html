@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <script src="../js/script.js"></script>
+</head>
+<body>
+    <h1>Contato com professores</h1>
+    <div style="color: green" th:if="${sucesso}" th:text="${sucesso}"></div><br>
+    <form th:action="@{salvarMensagem}" th:object="${contato}" method="POST">
+    	<input type="hidden" name="remetente" th:value="${#authentication.getPrincipal().getUsername()}">
+        Destinatário: <input type="text" th:field="*{destinatario}" required><br><br>
+        Assunto: <input type="text" th:field="*{assunto}" required><br><br>
+        Mensagem: <textarea required  th:field="*{mensagem}"></textarea><br><br>      
+        <input type="submit" value="Enviar">
+    </form>
+    <hr>
+    <a th:href="@{/}">Voltar para a Home</a>
+</body>
+</html>

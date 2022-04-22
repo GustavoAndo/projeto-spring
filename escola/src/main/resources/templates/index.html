@@ -30,7 +30,7 @@
     <p>Nele, você pode:</p>
     <ul>
     	<li>Visualizar <span sec:authorize="hasRole('ADMINISTRADOR')">e criar </span><a href="#avisos">avisos</a>.</li>
-		<li sec:authorize="hasRole('ALUNO')">Ver as <a href="/presencaNota">minhas notas e presenças</a>.</li>
+		<li sec:authorize="hasRole('ALUNO')">Ver as <a href="/minhaNota">minhas notas</a>.</li>
 	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'ALUNO')">Entrar em <a href="/contato">contato</a> com os professores.</li>
 	    <li sec:authorize="hasRole('PROFESSOR')">Ver <a href="/mensagem">mensagens</a> recebidas.</li>
 	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Ter acesso à <a href="/alunos">lista de alunos</a> para cadastrar, editar e excluir usuários.</li>

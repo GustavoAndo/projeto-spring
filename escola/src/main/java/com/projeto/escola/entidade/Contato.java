@@ -12,6 +12,7 @@ public class Contato {
 	long id;
 
 	String remetente;
+	String destinatario;
 	String assunto;
 	String mensagem;
 	
@@ -20,6 +21,12 @@ public class Contato {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getDestinatario() {
+		return destinatario;
+	}
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
 	}
 	public String getRemetente() {
 		return remetente;

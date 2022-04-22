@@ -50,11 +50,6 @@ public class Nota {
 	
 	@Column(name="media_ing")
 	private float mediaIng;
-	
-	@Column(name="total_faltas")
-	private int totalFaltas;
-	
-	private long raAluno;
 
 	public Long getId() {
 		return id;
@@ -166,21 +161,5 @@ public class Nota {
 
 	public void setMediaIng(float mediaIng) {
 		this.mediaIng = mediaIng;
-	}
-
-	public int getTotalFaltas() {
-		return totalFaltas;
-	}
-
-	public void setTotalFaltas(int totalFaltas) {
-		this.totalFaltas = totalFaltas;
-	}
-
-	public long getRaAluno() {
-		return raAluno;
-	}
-
-	public void setRaAluno(long raAluno) {
-		this.raAluno = raAluno;
 	}
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Alunos</h1>
+    <div style="color: green" th:if="${sucesso}" th:text="${sucesso}"></div>
     <a th:href="@{/cadastrarAlunos}">Adicionar Alunos</a><br>
     <form th:action="@{/alunos}">
     	Pesquisar: <input type="search" name="palavraChave" id="palavraChave" th:value="${palavraChave}">
@@ -34,16 +35,16 @@
                 <td th:text="${aluno.cpf}"></td>
                 <td>
                 	<a th:href="@{/editarAlunos/{ra}(ra=${aluno.ra})}">
-                		<img src="../img/editar.png" alt="Conta ativa" width="27px">
+                		<img src="../img/editar.png" alt="Editar" width="27px">
                 	</a>
 	                <a onclick="javascript:return confirm('Você tem certeza que quer excluir este aluno?')" 
-	                th:href="@{/excluirAlunos/{ra}(ra=${aluno.ra})}">
-	                	<img src="../img/excluir.png" alt="Conta ativa" width="27px">
+	                th:href="@{/excluirAlunos/{ra}/{id}(ra = ${aluno.ra}, id = ${aluno.idNota})}">
+	                	<img src="../img/excluir.png" alt="Excluir" width="27px">
 	                </a>
                 </td>
                 <td>
                 	<a href="/notas">
-                		<img src="../img/nota.png" alt="Conta ativa" width="27px">
+                		<img src="../img/nota.png" alt="Notas" width="27px">
                 	</a>
                </td>
             </tr>

@@ -12,7 +12,6 @@ import com.projeto.escola.entidade.Nota;
 public interface NotaRepositorio extends JpaRepository<Nota, Long>{
 
     @Query("SELECT n FROM Nota n WHERE n.nomeAluno LIKE %?1%"
-            + " OR n.raAluno LIKE %?1%"
             + " OR n.mediaBio LIKE %?1%"
             + " OR n.mediaMat LIKE %?1%"
             + " OR n.mediaFis LIKE %?1%"
@@ -24,8 +23,7 @@ public interface NotaRepositorio extends JpaRepository<Nota, Long>{
     		+ " OR n.mediaPor LIKE %?1%"
     		+ " OR n.mediaEdF LIKE %?1%"
     		+ " OR n.mediaArt LIKE %?1%"
-    		+ " OR n.mediaIng LIKE %?1%"
-    		+ " OR n.totalFaltas LIKE %?1%")
+    		+ " OR n.mediaIng LIKE %?1%")
     public List<Nota> pesquisa(String palavraChave);
 	
 }

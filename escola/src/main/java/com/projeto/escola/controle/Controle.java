@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.escola.entidade.Aluno;
+import com.projeto.escola.entidade.Contato;
 import com.projeto.escola.entidade.Nota;
 import com.projeto.escola.entidade.Usuario;
 import com.projeto.escola.repositorio.AlunoRepositorio;
+import com.projeto.escola.repositorio.ContatoRepositorio;
 import com.projeto.escola.repositorio.NotaRepositorio;
 import com.projeto.escola.repositorio.UsuarioRepositorio;
 
@@ -37,6 +40,9 @@ public class Controle {
 	
 	@Autowired
 	private NotaRepositorio notaRepo;
+	
+	@Autowired
+	private ContatoRepositorio contatoRepo;
 	
 	// URL
 	
@@ -133,29 +139,44 @@ public class Controle {
 		return "html/create/cadastro-aluno";
 	}
 	
+	@GetMapping("/contato")
+	public String contatar(@ModelAttribute("contato") Contato contato) {
+		return "html/create/contato";
+	}
+	
 	// CREATE (SAVE)
 	
 	@PostMapping("/salvarUsuarios")
-	public String salvarUsuarios(@ModelAttribute("usuario") Usuario usuario) {
+	public String salvarUsuarios(@ModelAttribute("usuario") Usuario usuario, RedirectAttributes redirect) {
 	    String encodedPassword = new BCryptPasswordEncoder().encode(usuario.getPassword());
 	    usuario.setPassword(encodedPassword);
 	    usuarioRepo.save(usuario);	
+	    redirect.addFlashAttribute("sucesso", "Usuário salvo com sucesso!");
 		return "redirect:/usuarios";
 	}
 	
 	@PostMapping("/salvarAlunos")
-	public String salvarAlunos(@ModelAttribute("aluno") Aluno aluno, @ModelAttribute("nota") Nota nota) {
-		nota.setRaAluno(aluno.getRa());
+	public String salvarAlunos(@ModelAttribute("aluno") Aluno aluno, @ModelAttribute("nota") Nota nota, RedirectAttributes redirect) {
 		nota.setNomeAluno(aluno.getNome());
 		notaRepo.save(nota);
+		aluno.setIdNota(nota.getId());
 		alunoRepo.save(aluno);
+		redirect.addFlashAttribute("sucesso", "Aluno salvo com sucesso!");
 		return "redirect:/alunos";
 	}
 	
 	@PostMapping("/salvarNotas")
-	public String salvarNotas(@ModelAttribute("nota") Nota nota) {
+	public String salvarNotas(@ModelAttribute("nota") Nota nota, RedirectAttributes redirect) {
 		notaRepo.save(nota);
+		redirect.addFlashAttribute("sucesso" , "Nota salva com sucesso!");
 		return "redirect:/notas";
+	}
+	
+	@PostMapping("/salvarMensagem")
+	public String salvarNotas(@ModelAttribute("contato") Contato contato, RedirectAttributes redirect) {
+		contatoRepo.save(contato);
+		redirect.addFlashAttribute("sucesso", "Mensagem enviada com sucesso!");
+		return "redirect:/contato";
 	}
 	
 	// UPDATE
@@ -190,9 +211,9 @@ public class Controle {
         return "html/update/editar-aluno";
 	}
 	
-	@GetMapping("/editarNotas/{ra}")
-	public String editarNotas(@PathVariable("ra") Long ra, Model modelo) {
-		Optional<Nota> notaOpt = notaRepo.findById(ra);
+	@GetMapping("/editarNotas/{id}")
+	public String editarNotas(@PathVariable("id") Long id, Model modelo) {
+		Optional<Nota> notaOpt = notaRepo.findById(id);
         if (notaOpt.isEmpty()) {
         	 return "error/id-invalido";
         }
@@ -212,15 +233,15 @@ public class Controle {
 		return "redirect:/usuarios";
 	}
 	
-	@GetMapping("/excluirAlunos/{ra}")
-	public String excluirAlunos(@PathVariable("ra") Long ra) {
+	@GetMapping("/excluirAlunos/{ra}/{id}")
+	public String excluirAlunos(@PathVariable("ra") Long ra, @PathVariable("id") long id) {
 		Optional<Aluno> alunoOpt = alunoRepo.findById(ra);
-		Optional<Nota> notaOpt = notaRepo.findById(ra);
+		Optional<Nota> notaOpt = notaRepo.findById(id);
         if (alunoOpt.isEmpty() || notaOpt.isEmpty()) {
             return "error/id-invalido";
         }
         alunoRepo.deleteById(ra);
-        notaRepo.deleteById(ra);
+        notaRepo.deleteById(id);
 		return "redirect:/alunos";
 	}
 }

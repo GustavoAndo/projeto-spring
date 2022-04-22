@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Usuários</h1>
+    <div style="color: green" th:if="${sucesso}" th:text="${sucesso}"></div><br>
     <a th:href="@{/cadastrarUsuarios}">Adicionar Usuário</a><br>
     <form th:action="@{/pagina/1}">
     	<input type="hidden" name="sortField" id="sortField" th:value="${sortField}">
