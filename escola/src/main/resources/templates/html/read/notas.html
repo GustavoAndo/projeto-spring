@@ -15,36 +15,42 @@
     <table border="1px">
         <thead>
             <tr>
-           		<th>RA</th>
-                <th>Nome</th>
-                <th>Atividade 1</th>
-                <th>Atividade 2</th>
-                <th>Atividade 3</th>
-                <th>Atividade 4</th>
-                <th>Média Atividades</th>
-                <th>Prova 1</th>
-                <th>Prova 2</th>
-                <th>Média Geral</th>
-              	<th>Editar</th>
+           		<th rowspan="2">RA</th>
+                <th rowspan="2">Nome</th>
+                <th colspan="12">Média</th>
+                <th rowspan="2">Faltas</th>
+            </tr>
+            <tr>
+            	<th>Bio</th>
+            	<th>Mat</th>
+            	<th>Fís</th>
+            	<th>Quí</th>
+            	<th>Geo</th>
+            	<th>His</th>
+            	<th>Fil</th>
+            	<th>Soc</th>
+            	<th>Por</th>
+            	<th>EdF</th>
+            	<th>Art</th>
+            	<th>Ing</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="nota : ${listaNotas}">
-            	<td th:text="${nota.id}"></td>
-                <td th:text="${nota.nome}"></td>
-                <td th:text="${nota.atividade1}"></td>
-				<td th:text="${nota.atividade2}"></td>
-				<td th:text="${nota.atividade3}"></td>
-				<td th:text="${nota.atividade4}"></td>
-				<td th:text="${nota.mediaAtividades}"></td>
-				<td th:text="${nota.atividade1}"></td>
-				<td th:text="${nota.atividade2}"></td>
-				<td th:text="${nota.media}"></td>
-                <td>
-                	<a th:href="@{/editarNotas/{id}(id=${nota.id})}">
-                		<img src="../img/editar.png" alt="Conta ativa" width="27px">
-                	</a>
-                </td>
+            	<td th:text="${nota.raAluno}"></td>
+                <td th:text="${nota.nomeAluno}"></td>
+                <td th:text="${nota.mediaBio}"></td>
+				<td th:text="${nota.mediaMat}"></td>
+				<td th:text="${nota.mediaFis}"></td>
+				<td th:text="${nota.mediaQui}"></td>
+				<td th:text="${nota.mediaHis}"></td>
+				<td th:text="${nota.mediaFilo}"></td>
+				<td th:text="${nota.mediaSoc}"></td>
+				<td th:text="${nota.mediaPor}"></td>
+				<td th:text="${nota.mediaEdF}"></td>
+				<td th:text="${nota.mediaArt}"></td>
+				<td th:text="${nota.mediaIng}"></td>
+				<td th:text="${nota.totalFaltas}"></td>
             </tr>
         </tbody>
     </table>

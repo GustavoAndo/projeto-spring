@@ -25,7 +25,7 @@ import com.projeto.escola.repositorio.NotaRepositorio;
 import com.projeto.escola.repositorio.UsuarioRepositorio;
 
 @Controller
-public class Contole {
+public class Controle {
 	
 	// REPOSITORY
 	
@@ -46,7 +46,8 @@ public class Contole {
 	}
 	
 	@GetMapping("/perfil")
-	public String verPerfil() {
+	public String verPerfil(Model modelo) {
+		modelo.addAttribute("listaUsuarios", usuarioRepo.findAll());
 		return "html/read/perfil";
 	}
 	
@@ -144,8 +145,8 @@ public class Contole {
 	
 	@PostMapping("/salvarAlunos")
 	public String salvarAlunos(@ModelAttribute("aluno") Aluno aluno, @ModelAttribute("nota") Nota nota) {
-		nota.setId(aluno.getRa());
-		nota.setNome(aluno.getNome());
+		nota.setRaAluno(aluno.getRa());
+		nota.setNomeAluno(aluno.getNome());
 		notaRepo.save(nota);
 		alunoRepo.save(aluno);
 		return "redirect:/alunos";

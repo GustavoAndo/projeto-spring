@@ -15,7 +15,6 @@
     	<li sec:authorize="hasRole('PROFESSOR')"><a href="/mensagem">Mensagens</a></li>
     	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/alunos">Lista de Alunos</a></li>
     	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Notas dos Alunos</a></li>
-    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/presencas">Lista de Presença</a></li>
     	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Lista de Usuários</a></li>
     	<li>
     	<form action="/logout" method="post">
@@ -30,10 +29,10 @@
     <hr>
     <p>Nele, você pode:</p>
     <ul>
-    	<li>Visualizar <a href="#avisos">avisos</a>.</li>
-		<li sec:authorize="hasRole('ALUNO')">Ver as <a href="/presencaNota">minhas presencas e notas</a>.</li>
+    	<li>Visualizar <span sec:authorize="hasRole('ADMINISTRADOR')">e criar </span><a href="#avisos">avisos</a>.</li>
+		<li sec:authorize="hasRole('ALUNO')">Ver as <a href="/presencaNota">minhas notas e presenças</a>.</li>
 	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'ALUNO')">Entrar em <a href="/contato">contato</a> com os professores.</li>
-	    <li sec:authorize="hasRole('PROFESSOR')">Ver<a href="/mensagem">mensagens</a>recebidas.</li>
+	    <li sec:authorize="hasRole('PROFESSOR')">Ver <a href="/mensagem">mensagens</a> recebidas.</li>
 	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Ter acesso à <a href="/alunos">lista de alunos</a> para cadastrar, editar e excluir usuários.</li>
 	    <li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Ter acesso às<a href="/notas"> notas dos alunos</a>.</li>
     	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')">Marcar na <a href="/presencas">lista de presença</a> dos alunos presentes em determinado dia<span sec:authorize="hasRole('ADMINISTRADOR')"> e atualizá-la</span>.</li>

@@ -8,8 +8,30 @@
 </head>
 <body>
     <h1>Seu Perfil</h1>
-    <p>Username: <span sec:authentication="principal.username"></span></p>
-    <p>Nível de Acesso: <span sec:authentication="principal.authorities"></span></p>
+    <!-- <p>Username: <span sec:authentication="${#authentication.getPrincipal().getUsername()"></span></p>
+    <p>Nível de Acesso: <span th:text="${#authentication.getPrincipal().getAuthorities()}"></span></p> -->
+    <div th:each="usuario : ${listaUsuarios}">
+    	<p th:if="${usuario.username == #authentication.getPrincipal().getUsername()}">
+    		Imagem de perfil:
+    	</p>
+    	<p th:if="${usuario.username == #authentication.getPrincipal().getUsername()}">
+    		Nome <span th:text="${usuario.nome}"></span>
+    	</p>
+		<p th:if="${usuario.username == #authentication.getPrincipal().getUsername()}">
+    		Login: <span th:text="${usuario.username}"></span>
+    	</p>
+    	<p th:if="${usuario.username == #authentication.getPrincipal().getUsername()}">
+    		CPF: <span th:text="${usuario.cpf}"></span>
+    	</p>
+    	<p th:if="${usuario.username == #authentication.getPrincipal().getUsername()}">
+    		Nível de Acesso: 
+    		<span th:if="${usuario.nivelAcesso == 'ROLE_ADMINISTRADOR'}">Administrador</span>
+    		<span th:if="${usuario.nivelAcesso == 'ROLE_PROFESSOR'}">Professor</span>
+    		<span th:if="${usuario.nivelAcesso == 'ROLE_ALUNO'}">Aluno</span>
+    	</p>
+    </div>
     <a href="/editarPerfil">Editar Perfil</a>
+    <hr>
+    <a href="/">Voltar para a Home</a>
 </body>
 </html>
