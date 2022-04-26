@@ -15,8 +15,6 @@ public class Aluno {
 	
 	private String cpf;
 
-	private String nome;
-	
 	private String serie;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -30,12 +28,6 @@ public class Aluno {
 	}
 	public void setRa(Long ra) {
 		this.ra = ra;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getCpf() {
 		return cpf;

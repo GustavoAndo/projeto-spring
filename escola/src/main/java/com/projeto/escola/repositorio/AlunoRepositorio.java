@@ -11,8 +11,7 @@ import com.projeto.escola.entidade.Aluno;
 @Repository
 public interface AlunoRepositorio extends JpaRepository<Aluno, Long>{
 
-    @Query("SELECT a FROM Aluno a WHERE a.nome LIKE %?1%"
-            + " OR a.ra LIKE %?1%"
+    @Query("SELECT a FROM Aluno a WHERE a.ra LIKE %?1%"
             + " OR a.serie LIKE %?1%"
             + " OR a.dataNascimento LIKE %?1%")
     public List<Aluno> pesquisa(String palavraChave);

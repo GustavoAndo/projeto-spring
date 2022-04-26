@@ -13,6 +13,7 @@ public interface UsuarioRepositorio extends PagingAndSortingRepository<Usuario, 
 
     @Query("SELECT u FROM Usuario u WHERE u.nome LIKE %?1%"
             + " OR u.id LIKE %?1%"
+            + " OR u.cpf LIKE %?1%"
             + " OR u.nivelAcesso LIKE %?1%"
             + " OR u.username LIKE %?1%")
     public Page<Usuario> pesquisa(String palavraChave, Pageable pagina);
