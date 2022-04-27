@@ -30,7 +30,7 @@ Back: Java, SpringBoot (Spring Web, JPA, Hibernate, Thymeleaf, Spring Security) 
 
 ***
 
-## Materiais de estudo usados:
+## Materiais de estudo utilizados:
 
 ### CRUD (JPA, Thymeleaf e Hibernate):
 
