@@ -48,9 +48,9 @@ Back: Java, SpringBoot (Spring Web, JPA, Hibernate, Thymeleaf, Spring Security) 
 
 ### Upload, Dowload e Exibição de Arquivos:
 
-[Java: Uploading and Downloading Files from the Database using Spring Boot (Youtube)](https://youtu.be/HWFwgQYdEJE)
+[Java: Uploading and Downloading Files from the Database using Spring Boot (Youtube)](https://youtu.be/znjhY71F-8I)
 
-[Spring Boot - Venda D. Regina (2) - Salvar / Exibir Imagens (Youtube)](https://youtu.be/znjhY71F-8I)
+[Spring Boot - Venda D. Regina (2) - Salvar / Exibir Imagens (Youtube)](https://youtu.be/HWFwgQYdEJE)
 
 ### Barra de Pesquisa, Paginação e Ordenação das tabelas:
 
