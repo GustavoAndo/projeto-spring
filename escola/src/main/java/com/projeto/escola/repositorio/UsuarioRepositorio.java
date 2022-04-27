@@ -17,5 +17,5 @@ public interface UsuarioRepositorio extends PagingAndSortingRepository<Usuario, 
             + " OR u.nivelAcesso LIKE %?1%"
             + " OR u.username LIKE %?1%")
     public Page<Usuario> pesquisa(String palavraChave, Pageable pagina);
-
+    
 }

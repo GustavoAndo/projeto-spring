@@ -11,8 +11,6 @@
 	<h1>Editar Notas</h1>
     <form th:action="@{/salvarNotas}" th:object="${nota}" method="POST">
         <input type="hidden" th:field="*{id}">
-        Nome: <input type="text" th:field=*{nomeAluno} disabled><br><br>
-       	<input type="hidden" th:field="*{nomeAluno}">
        	Média de Biologia: <input type="number" step="0.1" th:field="*{mediaBio}"><br><br>
        	Média de Matemática: <input type="number" step="0.1" th:field="*{mediaMat}"><br><br>
         Média de Física: <input type="number" step="0.1" th:field="*{mediaFis}"><br><br>

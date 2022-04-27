@@ -15,7 +15,7 @@
     <table border="1px">
         <thead>
             <tr>
-                <th rowspan="2">Nome</th>
+                <th rowspan="2">RA</th>
                 <th colspan="12">Média</th>
                 <th rowspan="2">Editar</th>
             </tr>
@@ -36,7 +36,7 @@
         </thead>
         <tbody>
             <tr th:each="nota : ${listaNotas}">
-                <td th:text="${nota.nomeAluno}"></td>
+                <td th:each="aluno : ${listaAlunos}" th:if="${aluno.idNota == nota.id}" th:text="${aluno.ra}"></td>
                 <td th:text="${#numbers.formatDecimal(nota.mediaBio,1,1,'COMMA')}"></td>
 				<td th:text="${#numbers.formatDecimal(nota.mediaMat,1,1,'COMMA')}"></td>
 				<td th:text="${#numbers.formatDecimal(nota.mediaFis,1,1,'COMMA')}"></td>

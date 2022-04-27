@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.escola.entidade.Nota;
+import com.projeto.escola.repositorio.AlunoRepositorio;
 import com.projeto.escola.repositorio.NotaRepositorio;
 
 @Controller
@@ -21,6 +22,9 @@ public class ControleNota {
 	@Autowired
 	private NotaRepositorio notaRepo;
 	
+	@Autowired
+	private AlunoRepositorio alunoRepo;
+	
 	@GetMapping("/notas")
 	public String verNotas(Model modelo, @Param("palavraChave") String palavraChave) {
 		if (palavraChave != null) {
@@ -28,6 +32,7 @@ public class ControleNota {
         } else {
         	modelo.addAttribute("listaNotas", notaRepo.findAll());
         }
+		modelo.addAttribute("listaAlunos", alunoRepo.findAll());
 		modelo.addAttribute("palavraChave", palavraChave);
 		return "html/read/notas";
 	}
