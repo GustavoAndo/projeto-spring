@@ -21,8 +21,6 @@ public class Aluno {
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 	
-	private Long idNota;
-	
 	public Long getRa() {
 		return ra;
 	}
@@ -46,11 +44,5 @@ public class Aluno {
 	}
 	public void setSerie(String serie) {
 		this.serie = serie;
-	}
-	public Long getIdNota() {
-		return idNota;
-	}
-	public void setIdNota(Long idNota) {
-		this.idNota = idNota;
 	}
 }

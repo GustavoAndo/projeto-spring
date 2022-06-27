@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Notas dos alunos</h1>
+    <a href="/cadastrarNota">Adicionar Nota</a>
     <form th:action="@{/notas}">
     	Pesquisar: <input type="search" name="palavraChave" id="palavraChave" th:value="${palavraChave}">
     	<input type="submit" value="Pesquisar">
@@ -15,10 +16,12 @@
     <table border="1px">
         <thead>
             <tr>
-                <th rowspan="2">RA</th>
-                <th colspan="12">Média</th>
-                <th rowspan="2">Editar</th>
+            	<th>Aluno</th>
+                <th>Disciplina</th>
+                <th>Média</th>
+                <th>Editar</th>
             </tr>
+            <!--
             <tr>
             	<th>Bio</th>
             	<th>Mat</th>
@@ -32,11 +35,15 @@
             	<th>EdF</th>
             	<th>Art</th>
             	<th>Ing</th>
-            </tr>
+           
+            </tr> -->
         </thead>
         <tbody>
             <tr th:each="nota : ${listaNotas}">
-                <td th:each="aluno : ${listaAlunos}" th:if="${aluno.idNota == nota.id}" th:text="${aluno.ra}"></td>
+                <td th:text="${nota.aluno.cpf}"></td>
+                <td th:text="${nota.disciplina}"></td>
+                <td th:text="${nota.media}"></td>
+            <!--
                 <td th:text="${#numbers.formatDecimal(nota.mediaBio,1,1,'COMMA')}"></td>
 				<td th:text="${#numbers.formatDecimal(nota.mediaMat,1,1,'COMMA')}"></td>
 				<td th:text="${#numbers.formatDecimal(nota.mediaFis,1,1,'COMMA')}"></td>
@@ -49,9 +56,11 @@
 				<td th:text="${#numbers.formatDecimal(nota.mediaEdF,1,1,'COMMA')}"></td>
 				<td th:text="${#numbers.formatDecimal(nota.mediaArt,1,1,'COMMA')}"></td>
 				<td th:text="${#numbers.formatDecimal(nota.mediaIng,1,1,'COMMA')}"></td>
+			-->
 				<td><a th:href="@{/editarNotas/{id}(id=${nota.id})}">
                 	<img src="../img/editar.png" alt="Editar" width="27px">
                 </a></td>
+                 
             </tr>
         </tbody>
     </table>

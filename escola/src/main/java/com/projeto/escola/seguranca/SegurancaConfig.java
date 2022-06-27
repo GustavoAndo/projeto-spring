@@ -25,14 +25,20 @@ public class SegurancaConfig extends WebSecurityConfigurerAdapter {
 			.authoritiesByUsernameQuery("select username, nivel_acesso from usuario where username=?");
 	}
 	
+	String[] staticResources = {
+	        "/css/**",
+	        "/img/**",
+	        "/js/**",};
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	http.
 		authorizeRequests()
-			.antMatchers("/notas", "/editarNotas/{id}", "/alunos").hasAnyRole("ADMINISTRADOR", "PROFESSOR")
-			.antMatchers("/usuarios", "/cadastrarUsuarios", "/editarUsuarios/{id}", "/excluirUsuarios/{id}", "/aprovarMensagens", "/editarAlunos/{id}", "/").hasRole("ADMINISTRADOR")
-			.antMatchers("/mensagem").hasRole("PROFESSOR")
-			.antMatchers("/minhasNotas", "/contato").hasRole("ALUNO")
+			.antMatchers(staticResources).permitAll()
+//			.antMatchers("/notas", "/editarNotas/{id}", "/alunos").hasAnyRole("ADMINISTRADOR", "PROFESSOR")
+//			.antMatchers("/usuarios", "/cadastrarUsuarios", "/editarUsuarios/{id}", "/excluirUsuarios/{id}", "/aprovarMensagens", "/editarAlunos/{id}", "/").hasRole("ADMINISTRADOR")
+//			.antMatchers("/mensagem").hasRole("PROFESSOR")
+//			.antMatchers("/minhasNotas", "/contato").hasRole("ALUNO")
 			.anyRequest()
 			.authenticated()
 		.and()

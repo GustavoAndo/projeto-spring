@@ -1,6 +1,8 @@
 package com.projeto.escola.controle;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +24,8 @@ public class ControleContato {
 	}
 	
 	@PostMapping("/salvarMensagem")
-	public String salvarNotas(@ModelAttribute("contato") Contato contato, RedirectAttributes redirect) {
+	public String salvarNotas(@ModelAttribute("contato") Contato contato, RedirectAttributes redirect, @AuthenticationPrincipal User user) {
+		contato.setRemetente(user.getUsername());
 		contatoRepo.save(contato);
 		redirect.addFlashAttribute("sucesso", "Mensagem enviada com sucesso!");
 		return "redirect:/contato";

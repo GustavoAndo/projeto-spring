@@ -28,7 +28,7 @@ public class ControleNota {
 	@GetMapping("/notas")
 	public String verNotas(Model modelo, @Param("palavraChave") String palavraChave) {
 		if (palavraChave != null) {
-			modelo.addAttribute("listaNotas", notaRepo.pesquisa(palavraChave));
+			// modelo.addAttribute("listaNotas", notaRepo.pesquisa(palavraChave));
         } else {
         	modelo.addAttribute("listaNotas", notaRepo.findAll());
         }
@@ -37,6 +37,12 @@ public class ControleNota {
 		return "html/read/notas";
 	}
 
+	@GetMapping("/cadastrarNota")
+	public String cadastrarNota(@ModelAttribute("nota") Nota nota, Model modelo) {
+		modelo.addAttribute("listaAlunos", alunoRepo.findAll());
+		return "html/create/cadastro-nota";
+	}
+	
 	@PostMapping("/salvarNotas")
 	public String salvarNotas(@ModelAttribute("nota") Nota nota, RedirectAttributes redirect) {
 		notaRepo.save(nota);

@@ -38,7 +38,7 @@
                 		<img src="../img/editar.png" alt="Editar" width="27px">
                 	</a>
 	                <a onclick="javascript:return confirm('Você tem certeza que quer excluir este aluno?')" 
-	                th:href="@{/excluirAlunos/{ra}/{id}(ra = ${aluno.ra}, id = ${aluno.idNota})}">
+	                th:href="@{/excluirAlunos/{ra}(ra = ${aluno.ra})}">
 	                	<img src="../img/excluir.png" alt="Excluir" width="27px">
 	                </a>
                 </td>

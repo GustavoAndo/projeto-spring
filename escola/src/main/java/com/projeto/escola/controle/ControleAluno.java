@@ -52,7 +52,6 @@ public class ControleAluno {
 	@PostMapping("/salvarAlunos")
 	public String salvarAlunos(@ModelAttribute("aluno") Aluno aluno, @ModelAttribute("nota") Nota nota, RedirectAttributes redirect) {
 		notaRepo.save(nota);
-		aluno.setIdNota(nota.getId());
 		alunoRepo.save(aluno);
 		redirect.addFlashAttribute("sucesso", "Aluno salvo com sucesso!");
 		return "redirect:/alunos";
@@ -68,15 +67,13 @@ public class ControleAluno {
         return "html/update/editar-aluno";
 	}
 	
-	@GetMapping("/excluirAlunos/{ra}/{id}")
-	public String excluirAlunos(@PathVariable("ra") Long ra, @PathVariable("id") long id) {
+	@GetMapping("/excluirAlunos/{ra}")
+	public String excluirAlunos(@PathVariable("ra") Long ra, Model modelo) {
 		Optional<Aluno> alunoOpt = alunoRepo.findById(ra);
-		Optional<Nota> notaOpt = notaRepo.findById(id);
-        if (alunoOpt.isEmpty() || notaOpt.isEmpty()) {
+        if (alunoOpt.isEmpty()) {
             return "error/id-invalido";
         }
         alunoRepo.deleteById(ra);
-        notaRepo.deleteById(id);
 		return "redirect:/alunos";
 	}
 
