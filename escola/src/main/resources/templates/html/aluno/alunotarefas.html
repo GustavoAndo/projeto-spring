@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+	<header>
+		 <nav id="menu">
+		    <ul>
+		    	<li><a href="/perfil">Meu Perfil</a></li>
+		    	<li sec:authorize="hasRole('ALUNO')"><a href="/minhasNotas">Minhas Notas</a></li>
+		    	<li sec:authorize="hasRole('ALUNO')"><a href="/contato">Contato com Professores</a></li>
+		    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/aprovarMensagens">Mensagens para Professores</a></li>
+		    	<li sec:authorize="hasRole('PROFESSOR')"><a href="/mensagem">Mensagens</a></li>
+		    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/alunos">Lista de Alunos</a></li>
+		    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Notas dos Alunos</a></li>
+		    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Lista de Usuários</a></li>
+		    	<li>
+		    	<a></a>
+		    	<form action="/logout" method="post">
+					<input class="item-center-h" type="submit" value="Sair">      		
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				</form>
+				</li>
+		    </ul>
+	    </nav>
+    </header>
+    <main>
+		<h1>Tarefas</h1>
+	   	<p>Aqui temos suas tarefas não entregues:</p>
+		<div>
+			<p>Título da tarefa</p>
+			<p>Data Limite de Entrega: 00/00/0000</p>
+		</div>
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>

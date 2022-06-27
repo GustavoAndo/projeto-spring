@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
-	<h1 class="font-center red">Escola Fictícia</h1>
+	<img class="logo-login item-center-h" alt="Logo da Escola" src="../../img/logo.png">
+	<h1 class="font-center titulo">Escola Fictícia</h1>
 	<div class="box-login">
 		<div class="erro-login" th:if="${param.error}">Login e/ou senha inválidos!</div>
 		<div class="logout-login" th:if="${param.logout}">Até a próxima!</div>
@@ -18,7 +19,7 @@
 	        <input class="input-text-login" type="text" name="username"><br><br>
 	        <label>Senha: </label> <br>
 	        <input class="input-text-login" type="password" name="password"><br><br>
-	        <input class="item-center-h botao"  type="submit" value="Logar">
+	        <input class="item-center-h botao botao-login"  type="submit" value="Logar">
 	        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	    </form>
 	</div>

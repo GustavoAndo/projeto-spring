@@ -20,6 +20,12 @@ body {
 	width: 290px;
 }
 
+.botao-login {
+	padding: 5px;
+	height: 40px;
+	width: 150px;
+}
+
 .erro-login {
 	padding: 8px;
 	background-color: #ff4040;
@@ -34,4 +40,16 @@ body {
 	border-left: solid 10px #006600;
 	font-size: 16px;
 	margin-bottom: 10px;
+}
+
+.logo-login {
+	margin-left: -150px;
+	margin-top: 10px;
+	height: 45px;
+	position: absolute;
+}
+
+.titulo {
+	margin-top: 30px;
+	margin-left: 30px;
 }

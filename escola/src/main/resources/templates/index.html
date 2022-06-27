@@ -9,22 +9,23 @@
 <body>
 	<a href="/pdf/6">BAIXAR</a>
     <p>Cabeçalho:</p>
-    <ul>
-    	<li><a href="/perfil">Meu Perfil</a></li>
-    	<li sec:authorize="hasRole('ALUNO')"><a href="/minhasNotas">Minhas Notas</a></li>
-    	<li sec:authorize="hasRole('ALUNO')"><a href="/contato">Contato com Professores</a></li>
-    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/aprovarMensagens">Mensagens para Professores</a></li>
-    	<li sec:authorize="hasRole('PROFESSOR')"><a href="/mensagem">Mensagens</a></li>
-    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/alunos">Lista de Alunos</a></li>
-    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Notas dos Alunos</a></li>
-    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Lista de Usuários</a></li>
-    	<li>
-    	<form action="/logout" method="post">
-			<input type="submit" value="Sair">      		
-			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		</form>
-		</li>
-    </ul>
+    <nav>
+	    <ul>
+	    	<li sec:authorize="hasRole('ALUNO')"><a href="/index">Home</a></li>
+	    	<li sec:authorize="hasAnyRole('ALUNO', 'ADMINISTRADOR', 'PROFESSOR')"><a href="/postagens">Postagens</a></li>
+	    	<li sec:authorize="hasAnyRole('ALUNO', 'PROFESSOR')"><a href="/tarefas">Tarefas</a></li>
+	    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/todasTarefas">Tarefas</a></li>
+	    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Usuários</a></li>
+	    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/alunos">Alunos</a></li>
+	    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Estatísticas</a></li>
+	    	<li><a>Perfil</a>
+	    		<form action="/logout" method="post">
+				<input type="submit" value="Sair">      		
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			</form>
+	    	</li>
+	    </ul>
+    </nav>
     <h1>Escola Fictícia</h1>
     <h2>Bem-vindo, <span sec:authentication="principal.username">Nome</span></h2>
     <p>Esse site foi criado para a Escola Fictícia, para auxiliar alunos e professores a terem acesso às informações que desejarem</p>

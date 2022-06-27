@@ -30,6 +30,16 @@ public class ControleAluno {
 	@Autowired
 	private NotaRepositorio notaRepo;
 	
+	@GetMapping("/alunotarefas")
+	public String verTarefasAluno() {
+		return "html/aluno/alunotarefas";
+	}
+	
+	@GetMapping("/proftarefas")
+	public String verTarefasProf() {
+		return "html/prof/proftarefas";
+	}
+	
 	@GetMapping("/alunos")
 	public String verAlunos(Model modelo, @Param("palavraChave") String palavraChave) {
 		if (palavraChave != null) {

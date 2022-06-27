@@ -10,3 +10,11 @@ function mascara(i){
    if (v.length == 3 || v.length == 7) i.value += ".";
    if (v.length == 11) i.value += "-";
 }
+
+function exibir(id){
+	if(document.getElementById(id).style.display == 'block'){
+		document.getElementById(id).style.display = 'none'
+	} else {
+		document.getElementById(id).style.display = 'block'
+	}
+}
