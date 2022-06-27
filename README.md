@@ -1,8 +1,16 @@
-# Projeto Spring: Site para Escola Fictícia - JPA, MySQL, Thymeleaf e Spring Security
+# Projeto Spring: Site para Escola Fictícia
 
-Projeto feito enquanto aprendo Spring Boot.
+Este projeto foi criado durante minha aprendizagem com a tecnologia Spring Boot.
 
-Nele pretendo fazer com Spring:
+Desse modo, podem ocorrer algumas falhas no projeto, já que ele é de aprendizagem.
+
+***
+
+## 🎯 Objetivo
+
+Criar um site para uma escola para facilitar a gestão de entregas de trabalhos dos alunos para os professores.
+
+Nele é pretendido adicionar as seguintes funcionalidades com Spring:
 - [x] Visualização de dados no banco
 - [x] Cadastro de dados no banco
 - [x] Edição de dados no banco
@@ -12,25 +20,25 @@ Nele pretendo fazer com Spring:
 - [x] Sistema de funções diferentes de conta (Administrador, usuário etc.)
 - [x] Páginas de erro personalizadas (403, 404, 500)
 - [x] Filtros de busca, ordenação e paginação
+- [ ] Relacionamentos entre tabelas (Um-para-um e um-pra-muitos)
 - [ ] Upload, download e visualização de imagens e arquivos
+- [ ] Geração de pdf
 
-E também algumas coisas fora do Spring:
-- [ ] Adicionar um bom visual ao projeto - SpringBoot
-- [ ] Outras mecânicas com JavaScript
-
-Observação: podem ocorrer algumas falhas, já que é um projeto de aprendizagem.
-
-***
-
-## Tecnologias: 
-
-Front: HTML e JavaScript
-
-Back: Java, SpringBoot (Spring Web, JPA, Hibernate, Thymeleaf, Spring Security) e MySQL.
+E também algumas coisas com outras tecnologias:
+- Adicionar um bom visual ao projeto com HTML e CSS
+- Adicionar algumas funcionalidades com JavaScript
 
 ***
 
-## Materiais de estudo utilizados:
+## ⚙️ Tecnologias: 
+
+Front: HTML, CSS e JavaScript
+
+Back: Java (SpringBoot - Spring Web, JPA, Hibernate, Thymeleaf, Spring Security) e MySQL.
+
+***
+
+## 📚 Materiais de estudo utilizados:
 
 ### CRUD (JPA, Thymeleaf e Hibernate):
 
