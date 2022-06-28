@@ -1,0 +1,17 @@
+.botao-add-tarefa{
+	width: 220px;
+	height: 40px;
+	margin-top: 15px;
+}
+
+.tarefa-prof {
+	background-color: #008000;
+	color: #ffffff;
+	border-radius: 5px;
+	margin-top: 15px;
+	padding: 10px;
+}
+
+.lista-tarefa-prof {
+	margin-top: 80px;
+}

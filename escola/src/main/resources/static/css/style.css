@@ -1,10 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+body {
+	background-image: url("../../img/escola.jpg");
+	background-size: cover;
+}
+
 * {
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+}
+
+.container {
+	background-color: #ffffff;
+	width: 1160px;
+	margin: 0 auto;
+	margin-top: 30px;
+	padding: 20px;
 }
 
 h1 {
@@ -19,11 +32,11 @@ h2 {
 	padding: 10px;
 }
 
-input {
-	font-size: 17px;
+p {
+	padding: 5px;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type="number"], input[type="date"] {
 	box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
@@ -31,23 +44,22 @@ input[type=text], input[type=password] {
 	margin-top: 5px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type="number"]:focus, textarea:focus, input[type="date"]:focus {
 	box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
-	border-bottom: solid 3px #228b22;;
+	border-bottom: solid 3px #228b22;
+}
+
+textarea {
+	border: 2px solid #000000;
+	padding: 10px;
+	resize: none;
+	border-radius: 5px;
 }
 
 .font-center {
 	text-align: center;
-}
-
-.font-red {
-	color: red;
-}
-
-.font-green {
-	color: green;
 }
 
 .item-center {
@@ -70,15 +82,10 @@ input[type=text]:focus, input[type=password]:focus {
     transform: translateX(-50%);
 }
 
-.container-principal {
-	margin: 10px;
-	padding: 10px;
-}
-
 .botao {
 	border: none;
 	cursor: pointer;
-	border-radius: 5%;
+	border-radius: 8px;
 	background-color: #2d5ff5;
 	color: #ffffff;
 	transition: background .3s;
@@ -88,7 +95,12 @@ input[type=text]:focus, input[type=password]:focus {
 	background-color: #6fbbd3;
 }
 
-.hidden {
+.icone {
+	height: 30px;
+}
+
+.hidden-perfil {
+	background-color: #ffffff;
 	display: none;
 	width: 300px;
 	margin-top: 5px;
@@ -100,7 +112,6 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 #perfil p {
-	padding: 5px;
 	font-size: 16px;
 }
 
@@ -137,7 +148,6 @@ input[type=text]:focus, input[type=password]:focus {
 	transition: background .3s;
 	margin-left: 10px;
 	margin-right: 10px;
-	cursor: pointer;	
 }
 
 #menu ul li a:hover {
@@ -145,6 +155,42 @@ input[type=text]:focus, input[type=password]:focus {
 	color: #ffffff;
 }
 
-#menu ul li:last-child a {
+#menu ul li img {
+	cursor: pointer;
 	float: right;
+	padding: 15px;
+}
+
+#menu ul li:nth-child(1) img{
+	margin-left: 20px;
+	margin-right: 10px;
+	float: left;
+} 
+
+#rodape {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#rodape p {
+	font-size: 15px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+#rodape p a {
+	font-size: 15px;
+	text-decoration: none;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+#rodape p img {
+	height: 25px;
+}
+
+.voltar{
+	position: absolute;
+	height: 40px;	
 }

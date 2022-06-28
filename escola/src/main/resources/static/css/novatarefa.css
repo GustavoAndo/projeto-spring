@@ -1,0 +1,63 @@
+.container-form {
+	background-color: #ffffff;
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 30px;
+	padding: 20px;
+}
+
+.form-add-tarefa {
+	margin-top: 20px;
+	width: 120px;
+	height: 40px;
+}
+
+.titulo-tarefa {
+	width: 465px;
+}
+
+.nota-total {
+	width: 170px;
+}
+
+.descricao {
+	border: 2px solid #000000;
+	padding: 10px;
+	resize: none;
+	margin-top: 10px;
+	width: 580px;
+}
+
+.descricao {
+	margin-top: 10px;
+	width: 580px;
+}
+
+.descricao:focus {
+	box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+	border: 3px solid #228b22;
+}
+
+.first-part-form {
+	margin-top: 20px;
+}
+
+.second-part-form {
+	margin-top: 20px;
+}
+
+.third-part-form {
+	margin-top: 20px;
+	margin-bottom: 70px;
+}
+
+.input-right {
+	float: right;
+}
+
+.voltar-nova-tarefa {
+	left: 350px;
+	top: 95px;
+}

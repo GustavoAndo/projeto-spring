@@ -14,13 +14,17 @@
 		<div class="erro-login" th:if="${param.error}">Login e/ou senha inválidos!</div>
 		<div class="logout-login" th:if="${param.logout}">Até a próxima!</div>
 	    <h2 class="font-center">Login</h2>
-	    <form  action="/login" method="POST">
-	        <label>Email: </label><br>
-	        <input class="input-text-login" type="text" name="username"><br><br>
-	        <label>Senha: </label> <br>
-	        <input class="input-text-login" type="password" name="password"><br><br>
-	        <input class="item-center-h botao botao-login"  type="submit" value="Logar">
-	        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	    <form action="/login" method="POST">
+	    	<div class="first-part-login">
+		        <label>Email: </label><br>
+		        <input class="input-text-login" type="text" name="username"><br><br>
+	        </div>
+	        <div class="second-part-login">
+		        <label>Senha: </label> <br>
+		        <input class="input-text-login" type="password" name="password"><br><br>
+		        <input class="item-center-h botao botao-login"  type="submit" value="Logar">
+		        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		    </div>
 	    </form>
 	</div>
 </body>

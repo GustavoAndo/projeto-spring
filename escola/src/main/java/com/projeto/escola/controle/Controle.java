@@ -8,7 +8,7 @@ public class Controle {
 	
 	@GetMapping("/login")
 	public String verLogin() {
-		return "html/seguranca/login";
+		return "html/geral/login";
 	}
 	
 	@GetMapping("/")
