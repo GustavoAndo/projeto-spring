@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class TarefaAluno {
 	@Id
@@ -19,6 +21,7 @@ public class TarefaAluno {
 	private Long id;
 	
 	@Column(name = "data_entregue")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataEntregue;	
 	
 	@OneToOne(cascade = CascadeType.ALL)

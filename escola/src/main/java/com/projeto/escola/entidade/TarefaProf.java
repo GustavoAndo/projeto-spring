@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class TarefaProf {
 	@Id
@@ -18,6 +20,7 @@ public class TarefaProf {
 	private String titulo;
 	
 	@Column(name="data_entrega")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataEntrega;
 	
 	@Column(name="nota_total")

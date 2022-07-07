@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/proftarefas.css">
     <script src="../../js/script.js" type="text/javascript"></script>
-    <title>Home</title>
+    <title>Tarefas</title>
 </head>
 <body>
 	<header>
@@ -41,9 +41,12 @@
 			<h1 class="font-center">Tarefas Atribuídas</h1>
 			<a href="novaTarefa"><button class="botao botao-add-tarefa item-center-h">+ Adicionar nova tarefa</button></a>
 			<div class="lista-tarefa-prof">
-				<div class="tarefa-prof">
-					<p>Título da tarefa</p>
-					<p>Disciplina: - Data de Entrega: 00/00/000</p>
+				<div class="tarefa-prof" th:each="tarefa : ${todasTarefas}">
+					<p class="bold"><a class="abrir-tarefa" th:href="@{/profEditarTarefa/{id}(id = ${tarefa.id})}" th:text="${tarefa.titulo}"></a></p>
+					<p>Data de Entrega: <span th:text="${#temporals.format(tarefa.dataEntrega, 'dd/MM/yyyy')}"></span><span th:if="${dataAtual.isAfter(tarefa.dataEntrega)}"> - Data limite excedida!</span></p>
+					<a th:href="@{/profEditarTarefa/{id}(id = ${tarefa.id})}"><img alt="icone de editar" src="../../img/editar.png" class="icone editar"></a>
+					<a onclick="javascript:return confirm('Você tem certeza que quer excluir essa tarefa? \nAs tarefas já enviadas pelos alunos também serão excluídas!')"  
+					th:href="@{/profExcluirTarefa/{id}(id = ${tarefa.id})}"><img alt="icone de excluir" src="../../img/excluir.png" class="icone excluir"></a>
 				</div>
 			</div>
 		</div>

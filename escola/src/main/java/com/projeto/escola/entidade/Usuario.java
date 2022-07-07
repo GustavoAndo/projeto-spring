@@ -26,6 +26,9 @@ public class Usuario {
 	@Column
 	private String serie;
 	
+	@Column
+	private String disciplina;
+	
 	@Column(name = "nivel_acesso")
 	private String nivelAcesso;
 	

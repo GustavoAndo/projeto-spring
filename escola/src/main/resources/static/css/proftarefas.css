@@ -15,3 +15,23 @@
 .lista-tarefa-prof {
 	margin-top: 80px;
 }
+
+.editar {
+	float: right;
+	margin-top: -60px;
+	margin-right: 40px;
+}
+
+.excluir {
+	float: right;
+	margin-top: -60px;
+}
+
+.abrir-tarefa {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.abrir-tarefa:hover {
+	text-decoration: underline;
+}

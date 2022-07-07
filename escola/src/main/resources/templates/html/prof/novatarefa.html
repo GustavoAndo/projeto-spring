@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/novatarefa.css">
     <script src="../../js/script.js" type="text/javascript"></script>
-    <title>Home</title>
+    <title>Nova Tarefa</title>
 </head>
 <body>
 	<header>
@@ -37,26 +37,27 @@
     </nav>
     </header>
     <main>
-    	<a href="/proftarefas"><img class="voltar voltar-nova-tarefa" src="../../img/voltar.png" alt="voltar"></a>
+    	<a href="/profTodasTarefas"><img class="voltar voltar-nova-tarefa" src="../../img/voltar.png" alt="voltar"></a>
     	<div class="container-form">
-    		<form action="/salvarNovaTarefa" method="POST">
-				<h1 class="font-center">Nova Tarefa:</h1>
+    		<form th:action="@{/salvarNovaTarefa}" method="POST" th:object="${tarefaProf}">
+				<h1 class="font-center" th:text="${titulo}">:</h1>
+				<input type="hidden" th:field="*{id}">
 				<div class="first-part-form">
 					<label>Título da Tarefa:</label>
-					<input class="titulo-tarefa" type="text" required>
+					<input class="titulo-tarefa" type="text" th:field="*{titulo}" required>
 				</div>
 				<div class="second-part-form">
 					<label>Data de Entrega:</label>
-					<input type="date" required>
+					<input type="date" th:field="*{dataEntrega}" required>
 					<div class="input-right">
 						<label> Nota Total:</label>
-						<input class="nota-total" type="number" required><br>
+						<input class="nota-total" type="number" th:field="*{notaTotal}" required><br>
 					</div>
 				</div>
 				<div class="third-part-form">
 					<label>Descrição:</label><br>
-					<textarea class="descricao" rows="10"></textarea><br>
-					<input class="botao form-add-tarefa item-center-h" type="submit" value="Adicionar">
+					<textarea class="descricao" rows="10" th:field="*{descricao}"></textarea><br>
+					<input class="botao form-add-tarefa item-center-h" type="submit" th:value="${botao}">
 				</div>
 			</form>
 		</div>
