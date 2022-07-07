@@ -69,3 +69,13 @@ Back: Java (SpringBoot - Spring Web, JPA, Hibernate, Thymeleaf, Spring Security)
 ### Páginas de Erro Personalizadas:
 
 [Code Java - Spring Boot Error Handling Guide](https://www.codejava.net/frameworks/spring-boot/spring-boot-error-handling-guide)
+
+### Relacionamentos um-para-um e um-para-muitos:
+
+[Baeldung - One-to-One Relationship in JPA](https://www.baeldung.com/jpa-one-to-one)
+
+[Willian Oizumi - Cadastros com OneToMany e Otimização de Consultas (Youtube)](https://youtu.be/7Nx3ZTDvcS0)
+
+### Geração de Pdf:
+
+[Code Java - Spring Boot Export Data to PDF Example](https://www.codejava.net/frameworks/spring-boot/pdf-export-example)
