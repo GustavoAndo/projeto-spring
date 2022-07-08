@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/tarefas.css">
-    <link rel="stylesheet" href="../../css/tarefasaluno.css">
+    <link rel="stylesheet" href="../../css/novatarefa.css">
     <script src="../../js/script.js" type="text/javascript"></script>
-    <title>Tarefas</title>
+    <title>Nova Tarefa</title>
 </head>
 <body>
 	<header>
@@ -38,22 +37,35 @@
     </nav>
     </header>
     <main>
-    	<div class="container">
-			<h1 class="font-center">Todas Tarefas</h1>
-			<nav class="navabas">
-				<ul>
-					<li id="aba-atribuida" onclick="trocarTarefas('aba-entregue', 'tarefa-entregue', 'aba-atribuida', 'tarefa-atribuida')">Tarefas Atribuídas</li>
-					<li id="aba-entregue" onclick="trocarTarefas('aba-atribuida', 'tarefa-atribuida', 'aba-entregue', 'tarefa-entregue')">Tarefas Entregues</li>
-				</ul>
-			</nav>
-			<div id="tarefa-atribuida">
-				<div class="tarefa-prof" th:each="tarefa : ${todasTarefas}">
-					<p class="bold"><a class="abrir-tarefa" th:href="@{/adicionaTarefa/{id}(id = ${tarefa.id})}" th:text="${tarefa.titulo}"></a></p>
-					<p>Data de Entrega: <span th:text="${#temporals.format(tarefa.dataEntrega, 'dd/MM/yyyy')}"></span><span th:if="${dataAtual.isAfter(tarefa.dataEntrega)}"> - Data limite excedida!</span></p>
+    	<a href="/alunoTodasTarefas"><img class="voltar voltar-nova-tarefa" src="../../img/voltar.png" alt="voltar"></a>
+    	<div class="container-form">
+    		<div th:object="${tarefaProf}">
+				<h1 class="font-center">Entegar Tarefa</h1>
+				<input type="hidden" th:field="*{id}">
+				<div class="first-part-form">
+					<span class="bold" th:text="*{titulo}"></span>
+				</div>
+				<div class="second-part-form">
+					Data de Entrega:
+					<span class="bold" th:text="*{#temporals.format(dataEntrega, 'dd/MM/yyyy')}"></span>
+				</div>
+				<div class="nota-aluno">
+					 Nota Total:
+					<span class="bold" th:text="*{notaTotal}"></span><br>
+				</div>	
+				<div class="third-part-add">
+					Descrição:
+					<p class="descricao" th:text="*{descricao}"></p>
 				</div>
 			</div>
-			<div id="tarefa-entregue">
-				teste
+			<div class="file-orient">
+				<p class="bold">Insira o arquivo de acordo com as orientações do professor: </p>
+				<form th:object="${tarefaAluno}" method="POST" enctype="multipart/form-data">
+					<label for="tarefa" id="selecionar" class="item-center-h add-file">Selecionar um arquivo &#187;</label>
+					<input type="file" name="tarefa" id="tarefa" required  value=''>  
+					<p id='file-name'></p>
+					<input type="submit" value="Enviar" class="botao form-add-tarefa2 item-center-h">
+				</form>
 			</div>
 		</div>
 	</main>
@@ -64,5 +76,13 @@
   			<a href="https://www.linkedin.com/in/gustavo-ando-054414209/" target="_blank"><img src="../../img/linkedin.png" alt="Ícone do Linkedin"></a>
   		</p>
 	</footer>
+	<script>
+		var $input    = document.getElementById('tarefa'),
+	    $fileName = document.getElementById('file-name');
+	
+		$input.addEventListener('change', function(){
+		  $fileName.textContent = this.value;
+		});
+	</script>
 </body>
 </html>

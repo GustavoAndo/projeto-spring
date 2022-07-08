@@ -28,11 +28,6 @@
 	width: 580px;
 }
 
-.descricao {
-	margin-top: 10px;
-	width: 580px;
-}
-
 .descricao:focus {
 	box-shadow: 0 0 0 0;
     border: 0 none;
@@ -60,4 +55,46 @@
 .voltar-nova-tarefa {
 	left: 350px;
 	top: 95px;
+}
+
+.nota-aluno {
+	margin-top: 20px;
+}
+
+.third-part-add {
+	margin-top: 20px;
+}
+
+.add-file {
+	margin-top: 20px;
+}
+
+.file-orient {
+	margin-top: 30px;
+	margin-bottom: 80px;
+}
+
+.form-add-tarefa2 {
+	margin-top: 20px;
+	width: 120px;
+	height: 40px;
+}
+
+#selecionar {
+	background-color: #008000;
+	color: #ffffff;
+	border: none;
+	cursor: pointer;
+	border-radius: 8px;
+	padding: 10px;
+	margin-top: -50px;
+}
+
+#selecionar:hover {
+	background-color: #006600;
+}
+
+#file-name {
+	margin-top: 70px;
+	text-align: center;
 }

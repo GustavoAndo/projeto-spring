@@ -13,5 +13,4 @@ function trocarTarefas(idAbaAtual, idContainerAtual, idAba, idContainer){
 	document.getElementById(idContainer).style.display = 'block'
 	document.getElementById(idAba).style.backgroundColor = '#008000'
 	document.getElementById(idAba).style.color = '#ffffff' 
-	
 }

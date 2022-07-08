@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,7 +29,8 @@ public class TarefaProf {
 	@Column(name="nota_total")
 	private Integer notaTotal;
 	
-	@Column
+	@Lob 
+	@Column(length=512)
 	private String descricao;
 	
 	@ManyToOne
