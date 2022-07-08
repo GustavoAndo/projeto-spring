@@ -1,0 +1,27 @@
+.navabas{
+	margin-top: 20px;
+	width: 1100px;
+	position: relative;
+}
+
+.navabas ul {
+	list-style: none;
+}
+
+.navabas ul li {
+	width: 200px;
+	padding: 25px;
+	background-color: #90ee90;
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+}
+
+#aba-atribuida {
+	background-color: #008000;
+	color: #ffffff;
+}
+
+#tarefa-entregue {
+	display: none;
+}

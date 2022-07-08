@@ -4,39 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/tarefas.css">
+    <link rel="stylesheet" href="../../css/tarefasaluno.css">
+    <script src="../../js/script.js" type="text/javascript"></script>
+    <title>Tarefas</title>
 </head>
 <body>
 	<header>
-		 <nav id="menu">
-		    <ul>
-		    	<li><a href="/perfil">Meu Perfil</a></li>
-		    	<li sec:authorize="hasRole('ALUNO')"><a href="/minhasNotas">Minhas Notas</a></li>
-		    	<li sec:authorize="hasRole('ALUNO')"><a href="/contato">Contato com Professores</a></li>
-		    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/aprovarMensagens">Mensagens para Professores</a></li>
-		    	<li sec:authorize="hasRole('PROFESSOR')"><a href="/mensagem">Mensagens</a></li>
-		    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/alunos">Lista de Alunos</a></li>
-		    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Notas dos Alunos</a></li>
-		    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Lista de Usuários</a></li>
-		    	<li>
-		    	<a></a>
+	 <nav id="menu">
+	    <ul>
+	    	<li><img class="icone logo-nav" alt="icone da logo" src="../../img/logo.png"></li>
+	    	<li sec:authorize="hasRole('ALUNO')"><a href="/index">Home</a></li>
+	    	<li sec:authorize="hasAnyRole('ALUNO', 'ADMINISTRADOR', 'PROFESSOR')"><a href="/postagens">Postagens</a></li>
+	    	<li sec:authorize="hasRole('ALUNO')"><a href="/alunotarefas">Tarefas</a></li>
+	    	<li sec:authorize="hasRole('PROFESSOR')"><a href="/proftarefas">Tarefas</a></li>
+	    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/todasTarefas">Tarefas</a></li>
+	    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/alunos">Alunos</a></li>
+	    	<li sec:authorize="hasRole('ADMINISTRADOR')"><a href="/usuarios">Usuários</a></li>
+	    	<li sec:authorize="hasAnyRole('ADMINISTRADOR', 'PROFESSOR')"><a href="/notas">Estatísticas</a></li>
+	    	<li><img class="icone" alt="icone de perfil" src="../../img/perfil.png" onclick="exibir('perfil')"></li>
+	    	<li><img class="icone" alt="icone de notificação" src="../../img/notificacao.png"></li>
+	    </ul>
+	    <div id="perfil" class="hidden-perfil">
+	    		<p>Nome:</p>
+	    		<p>CPF do Usúario:</p>
+	    		<p>Nível de Acesso:</p>
 		    	<form action="/logout" method="post">
-					<input class="item-center-h" type="submit" value="Sair">      		
+					<input class="botao botao-sair" type="submit" value="Sair">      		
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 				</form>
-				</li>
-		    </ul>
-	    </nav>
+			</div>
+    </nav>
     </header>
     <main>
-		<h1>Tarefas</h1>
-	   	<p>Aqui temos suas tarefas não entregues:</p>
-		<div class="tarefa">
-			<p>Título da tarefa</p>
-			<p>Data de Entrega: 00/00/0000</p>
+    	<div class="container">
+			<h1 class="font-center">Todas Tarefas</h1>
+			<nav class="navabas">
+				<ul>
+					<li id="aba-atribuida" onclick="trocarTarefas('aba-entregue', 'tarefa-entregue', 'aba-atribuida', 'tarefa-atribuida')">Tarefas Atribuídas</li>
+					<li id="aba-entregue" onclick="trocarTarefas('aba-atribuida', 'tarefa-atribuida', 'aba-entregue', 'tarefa-entregue')">Tarefas Entregues</li>
+				</ul>
+			</nav>
+			<div id="tarefa-atribuida">
+				<div class="tarefa-prof" th:each="tarefa : ${todasTarefas}">
+					<p class="bold"><a class="abrir-tarefa" th:href="@{/enviarTarefa/{id}(id = ${tarefa.id})}" th:text="${tarefa.titulo}"></a></p>
+					<p>Data de Entrega: <span th:text="${#temporals.format(tarefa.dataEntrega, 'dd/MM/yyyy')}"></span><span th:if="${dataAtual.isAfter(tarefa.dataEntrega)}"> - Data limite excedida!</span></p>
+				</div>
+			</div>
+			<div id="tarefa-entregue">
+				teste
+			</div>
 		</div>
 	</main>
-	<footer>
+	<footer id="rodape">
+		<p>Copyright &copy; 2022 - by Gustavo Ando<br></p>
+  		<p>
+  			<a href="http://www.github.com/GustavoAndo" target="_blank"><img src="../../img/github.png" alt="Ícone do GitHub"></a>
+  			<a href="https://www.linkedin.com/in/gustavo-ando-054414209/" target="_blank"><img src="../../img/linkedin.png" alt="Ícone do Linkedin"></a>
+  		</p>
 	</footer>
 </body>
 </html>

@@ -18,4 +18,7 @@ public interface UsuarioRepositorio extends PagingAndSortingRepository<Usuario, 
             + " OR u.username LIKE %?1%")
     public Page<Usuario> pesquisa(String palavraChave, Pageable pagina);
     
+    @Query("SELECT u FROM Usuario u WHERE u.username = ?1")
+    public Usuario findByEmail(String email);
+    
 }

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +14,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.projeto.escola.entidade.TarefaProf;
+import com.projeto.escola.entidade.Usuario;
 import com.projeto.escola.repositorio.TarefaProfRepositorio;
+import com.projeto.escola.repositorio.UsuarioRepositorio;
 
 @Controller
 public class ControleTarefaProf {
 	
 	@Autowired
 	private TarefaProfRepositorio repoTarefaProf;
+	@Autowired
+	private UsuarioRepositorio repoUsuario;
 	
 	@GetMapping("/profTodasTarefas")
-	public String verTarefasProf(Model modelo) {
-		modelo.addAttribute("todasTarefas", repoTarefaProf.findAll());
+	public String verTarefasProf(Model modelo, @AuthenticationPrincipal User user) {
+		modelo.addAttribute("todasTarefas", repoTarefaProf.findAllByThisUser(user.getUsername()));
 		modelo.addAttribute("dataAtual", LocalDate.now());
 		return "html/prof/proftarefas";
 	}
@@ -36,7 +42,9 @@ public class ControleTarefaProf {
 	}
 	
 	@PostMapping("/salvarNovaTarefa")
-	public String salvarNovaTarefa(@ModelAttribute("tarefaProf") TarefaProf tarefaProf) {
+	public String salvarNovaTarefa(@ModelAttribute("tarefaProf") TarefaProf tarefaProf, @AuthenticationPrincipal User user) {
+		Usuario usuario = repoUsuario.findByEmail(user.getUsername());
+		tarefaProf.setUsuario(usuario);
 		repoTarefaProf.save(tarefaProf);
 		return "redirect:/profTodasTarefas";
 	}

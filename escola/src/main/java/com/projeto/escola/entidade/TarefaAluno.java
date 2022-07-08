@@ -31,6 +31,10 @@ public class TarefaAluno {
 	@ManyToOne
 	@JoinColumn(name = "id_tarefa_prof")
 	private TarefaProf tarefaProf;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -55,5 +59,11 @@ public class TarefaAluno {
 	}
 	public void setTarefaProf(TarefaProf tarefaProf) {
 		this.tarefaProf = tarefaProf;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
